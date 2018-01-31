@@ -193,3 +193,8 @@ ModelManifest.xml
 # Ignore platform and plugins directories.
 platforms/
 plugins/
+
+# More visual studio bits.
+.vs/
+*.sln
+*.jsproj
