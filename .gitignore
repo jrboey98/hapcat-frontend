@@ -198,3 +198,4 @@ plugins/
 .vs/
 *.sln
 *.jsproj
+simulation/
