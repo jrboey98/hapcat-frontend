@@ -186,7 +186,7 @@ h1 {
     z-index:2;
 }
 
-.welcome_text {
+.welcome_text_div {
     position: absolute;
     bottom: 0;
     color: #337E73;
