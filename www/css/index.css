@@ -24,17 +24,7 @@ body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
-    background-color:#E4E4E4;
-    background-image:linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-ms-linear-gradient(top, #A7A7A7 0%, #E4E4E4 51%);
-    background-image:-webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(0, #A7A7A7),
-        color-stop(0.51, #E4E4E4)
-    );
+    background-color: lightgrey;
     background-attachment:fixed;
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
     font-size:12px;
@@ -47,27 +37,22 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    /*background:url(../img/logo.png) no-repeat center top;*/ /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
+    height:100%;                   /* text area height */
+    width:100%;                   /* text area width */
     text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
 }
 
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+ /*Landscape layout (with min-width)*/ 
+/*@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
     .app {
         background-position:left center;
-        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
-        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
-                                      /* offset horizontal: half of image width and text area width */
+        padding:75px 0px 75px 170px;   padding-top + padding-bottom + text area = image height 
+        margin:-90px 0px 0px -198px;   offset vertical: half of image height 
+                                       offset horizontal: half of image width and text area width 
     }
-}
+}*/
 
 h1 {
     font-size:24px;
@@ -113,3 +98,126 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+/*Developer Defined Classes*/
+
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: #510B5D;
+    position: fixed;
+    top: 0;
+    z-index:3;
+}
+
+.footer {
+    width: 100%;
+    height: 60px;
+    background-color: #510B5D;
+    position: fixed;
+    bottom: 0;
+}
+
+.content {
+    margin-top:20%;
+    margin-bottom:20%;
+}
+
+.logo_div {
+    height: 100%;
+    width: 20%;
+    float: right;
+}
+
+.search_div {
+    height: 100%;
+    width: 80%;
+    float: left;
+}
+
+.search {
+    width: 80%;
+    float: left;
+    padding: 6px;
+    border: none;
+    margin-top: 15px;
+    margin-left: 16px;
+    font-size: 17px;
+    border-radius: 25px;
+}
+
+.header_logo {
+    height: 90%;
+    margin-right: 10%;
+    margin-top: 5px;
+}
+
+.footer_icon_div {
+    float: left;
+    width: 33.33%;
+}
+
+.footer_icon {
+    height: 50px;
+    padding: 7px;
+    fill: white;
+}
+
+.content_card {
+    width: 90%;
+    height: 200px;
+    background: #E4E4E4;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 7px 7px 5px #888888;
+}
+
+.welcome_card {
+    position: relative;
+    width: 90%;
+    height: 100px;
+    background: linear-gradient(to bottom right, #92FFFB, #FFE892 );
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    box-shadow: 7px 7px 5px #888888;
+    font-family: 'Lato', sans-serif;
+    z-index:2;
+}
+
+.welcome_text {
+    position: absolute;
+    bottom: 0;
+    color: #337E73;
+}
+
+.content_button {
+    width: 90%;
+    height: 60px;
+    margin-top: 10px;
+    background: linear-gradient(to bottom right, #FFE892, #D0B554 );
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    font-size: 20px;
+    box-shadow: 7px 7px 5px #888888;
+}
+
+.footer_icon_button {
+    background-color: #510B5D;
+    border: none;
+    width: 100%;
+}
+
+    .footer_icon_button:active {
+        background-color: #301235;
+        border: none;
+        width: 100%;
+    }
+
+    .floating_action_button {
+        position: fixed;
+        bottom: 70px;
+        right: 15px;
+    }
+
