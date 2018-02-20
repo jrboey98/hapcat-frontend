@@ -18,29 +18,84 @@
     under the License.
 -->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Hello World</title>
-    </head>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+
+    <title>Hapcat</title>
+</head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+            <div class="header">
+                <div class="search_div">
+                        <input type="text" class="search" placeholder="Search your area..." />
+                </div>
+                <div class="logo_div">
+                    <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
+                    <img src="img/logo.svg" class="header_logo" />
+                </div>
+            </div>
+            <div class="content">
+                <div class="welcome_card">
+                    <div class="welcome_text">
+                        <h1><b>Ready for some lunch?</b></h1>
+                    </div>
+                </div>
+                <div class="content_card">
+
+                </div>
+                <div class="content_card">
+
+                </div>
+                <div class="content_card">
+
+                </div>
+                <div class="content_card">
+
+                </div>
+                <div class="content_card">
+
+                </div>
+                <div class="content_card">
+
+                </div>
+                <button class="content_button">View the next 20 ></button>
+                <div class="floating_action_button">
+                    <img src="img/plus.svg"  height="75" width="75"/>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer_icon_div">
+                    <button class="footer_icon_button">
+                        <img src="img/discoverIcon.svg" class="svg footer_icon" />
+                    </button>
+                </div>
+                <div class="footer_icon_div">
+                    <button class="footer_icon_button">
+                        <img src="img/search.svg" class="svg footer_icon" />
+                    </button>                
+                </div>
+                <div class="footer_icon_div">
+                    <button class="footer_icon_button">
+                        <img src="img/search.svg" class="svg footer_icon" />
+                    </button>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
