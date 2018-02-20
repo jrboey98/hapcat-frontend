@@ -32,6 +32,8 @@ var app = {
 
     },
 
+    
+
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
@@ -44,6 +46,38 @@ var app = {
         console.log('Received Event: ' + id);
     }
 };
+
+//Global variables
+var currentdate = new Date();
+var hour = currentdate.getHours();
+
+// Handle the resume event
+function onResume() {
+    changeWelcomeText();
+}
+
+function onLoad() {
+    changeWelcomeText();
+    console.log(hour);
+}
+
+function changeWelcomeText() {
+    var welcomeText = new String();
+    if ((hour > 21 && hour <= 24) || (hour >= 0 && hour <= 4)) {
+        welcomeText = "Ready for a night out?"
+    } else if (hour > 4 && hour <= 11) {
+        welcomeText = "Ready for breakfast?"
+    } else if (hour > 11 && hour <= 15) {
+        welcomeText = "Ready for lunch?"
+    } else if (hour > 15 && hour <= 21) {
+        welcomeText = "Ready for dinner?"
+    } else {
+        welcomeText = "Ready for some fun?"
+    }
+
+    document.getElementById("welcome_text").innerHTML = welcomeText;
+
+}
 
 /*
  * Replace all SVG images with inline SVG
