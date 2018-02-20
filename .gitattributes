@@ -1,0 +1,3 @@
+# In case people on Windows don't have core.autocrlf set correctly, ensure we
+# store text with LF endings.
+* text=auto
