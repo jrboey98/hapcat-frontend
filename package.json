@@ -12,7 +12,8 @@
     "dependencies": {
         "cordova-android": "^7.0.0",
         "cordova-ios": "^4.5.4",
-        "cordova-plugin-whitelist": "^1.3.3"
+        "cordova-plugin-whitelist": "^1.3.3",
+        "cordova-windows": "4.4.2"
     },
     "cordova": {
         "plugins": {
@@ -20,7 +21,8 @@
         },
         "platforms": [
             "android",
-            "ios"
+            "ios",
+            "windows"
         ]
     }
 }
