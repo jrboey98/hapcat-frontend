@@ -31,13 +31,12 @@
 
     <!-- bootstrap links for CSS and JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
@@ -53,7 +52,7 @@
         <div class="app">
             <div class="header">
                 <div class="search_div">
-                        <input type="text" class="search" placeholder="Search your area..." />
+                        <input type="text" class="search" placeholder=" Search your area..." />
                 </div>
                 <div class="logo_div">
                     <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
@@ -105,13 +104,41 @@
                 </div>
             </div>
             <div class="footer">
-                <div class="footer_icon_div">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="footer_icon_button">
+                                <!--<div class="svg footer_icon">-->
+                                    <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
+                                    <img src="img/search.svg" class="svg footer_icon" />
+                                
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_button">
+                               <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_button">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--<div class="footer_icon_div">
                     <button class="footer_icon_button">
                         <img src="img/discoverIcon.svg" class="svg footer_icon" />
                     </button>
                 </div>
                 <div class="footer_icon_div">
                     <button class="footer_icon_button">
+                        <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
                         <img src="img/search.svg" class="svg footer_icon" />
                     </button>                
                 </div>
@@ -119,7 +146,7 @@
                     <button class="footer_icon_button">
                         <img src="img/search.svg" class="svg footer_icon" />
                     </button>
-                </div>
+                </div>-->
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
