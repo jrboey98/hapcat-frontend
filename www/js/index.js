@@ -59,6 +59,7 @@ function onResume() {
 function onLoad() {
     changeWelcomeText();
     console.log(hour);
+    generateCard();
 }
 
 function changeWelcomeText() {
@@ -86,6 +87,64 @@ function changeWelcomeText() {
     
 
 }
+
+//Google Places
+
+function getResults() {
+
+}
+
+function generateTags(iteration, returnedLocation) {
+    return `
+<div class="col-3">
+    <div class="content_tag_div">
+        <p class="content_tag_text">${returnedLocation.types[iteration]}</p>
+    </div>
+</div>
+`;
+}
+
+function generateCard() {
+    var returnedLocation = {
+        name: "test",
+        placeId: "test",
+        address: "test",
+        photo: '../img/testImages/test_image_2.png',
+        types: ['test', 'moreTest', 't3st']
+    }
+    var tags = "";
+    for (var i = 0; i < 3; i++) {
+        tags += generateTags(i, returnedLocation);
+    }
+    const contentCard = `
+<div class="content_card">
+    <div class="content_name_photo">
+        <div class="content_photo_div">
+            <div class="content_name_div">
+                <h4 class="content_name">${returnedLocation.name}</h4>
+            </div>
+            <div class="content_distance_div">
+                <h4 class="content_distance">2.6mi</h4>
+            </div>
+            <img src="${returnedLocation.photo}" class="content_photo" />
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            ${tags}
+            <div class="col-3">
+                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+            </div>
+        </div>
+    </div>
+</div>
+`;
+    console.log(contentCard);
+    document.getElementById("generated_content").innerHTML = contentCard;
+}
+
+
+
 
 /*
  * Replace all SVG images with inline SVG
