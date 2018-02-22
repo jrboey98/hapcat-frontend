@@ -27,15 +27,23 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
+
+
+    <!-- bootstrap links for CSS and JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Raleway|Syncopate" rel="stylesheet">
+
 
 
     <title>Hapcat</title>
@@ -44,7 +52,7 @@
         <div class="app">
             <div class="header">
                 <div class="search_div">
-                        <input type="text" class="search" placeholder="Search your area..." />
+                        <input type="text" class="search" placeholder=" Search your area..." />
                 </div>
                 <div class="logo_div">
                     <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
@@ -54,42 +62,272 @@
             <div class="content">
                 <div class="welcome_card">
                     <div class="welcome_text_div">
-                        <h1 id="welcome_text"></h1>
+                        <p id="time_of_day"></p>
+                        <p id="welcome_text"></p>
                     </div>
                 </div>
                 <div class="content_card">
-                    <div class="place_card">
-                        <h1><b>here is a place</b></h1>
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">Grand Corona Cafe</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">2.6mi</h4>
+                            </div>
+                            <img src="img/testImages/testImage.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Cafe</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-                <div class="content_card">
 
+                <div class="content_card">
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">Red and Black Bar and Grill</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">5.1mi</h4>
+                            </div>
+                            <img src="img/testImages/test_image_2.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Drinks</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="content_card">
 
+                <div class="content_card">
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">Samurai Hibachi</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">2.3mi</h4>
+                            </div>
+                            <img src="img/testImages/test_image_3.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Asian</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="content_card">
 
+                <div class="content_card">
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">The Rail</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">0.6mi</h4>
+                            </div>
+                            <img src="img/testImages/test_image_4.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Burgers</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="content_card">
 
+                <div class="content_card">
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">Grand Corona Cafe</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">0.6mi</h4>
+                            </div>
+                            <img src="img/testImages/testImage.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Cafe</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-                <div class="content_card">
 
+                <div class="content_card">
+                    <div class="content_name_photo">
+                        <div class="content_photo_div">
+                            <div class="content_name_div">
+                                <h4 class="content_name">Grand Corona Cafe</h4>
+                            </div>
+                            <div class="content_distance_div">
+                                <h4 class="content_distance">0.6mi</h4>
+                            </div>
+                            <img src="img/testImages/testImage.png" class="content_photo" />
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="content_tag_div">
+                                    <p class="content_tag_text">Lunch</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #337E7B;">
+                                    <p class="content_tag_text">Dinner</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <div class="content_tag_div" style="background-color: #D0B554;">
+                                    <p class="content_tag_text">Cafe</p>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
                 <button class="content_button">View the next 20 &gt;</button>
                 <div class="floating_action_button">
-                    <img src="img/plus.svg"  height="75" width="75"/>
+                    <img src="img/plus.svg" height="75" width="75" />
                 </div>
             </div>
             <div class="footer">
-                <div class="footer_icon_div">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="footer_icon_div_active">
+                                <!--<div class="svg footer_icon">-->
+                                    <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
+                                    <img src="img/search.svg" class="svg footer_icon" />
+                                
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_div">
+                               <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_div">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!--<div class="footer_icon_div">
                     <button class="footer_icon_button">
                         <img src="img/discoverIcon.svg" class="svg footer_icon" />
                     </button>
                 </div>
                 <div class="footer_icon_div">
                     <button class="footer_icon_button">
+                        <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
                         <img src="img/search.svg" class="svg footer_icon" />
                     </button>                
                 </div>
@@ -97,7 +335,7 @@
                     <button class="footer_icon_button">
                         <img src="img/search.svg" class="svg footer_icon" />
                     </button>
-                </div>
+                </div>-->
             </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
