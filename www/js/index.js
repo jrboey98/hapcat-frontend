@@ -63,19 +63,27 @@ function onLoad() {
 
 function changeWelcomeText() {
     var welcomeText = new String();
+    var timeOfDay = new String();
     if ((hour > 21 && hour <= 24) || (hour >= 0 && hour <= 4)) {
-        welcomeText = "Ready for a night out?"
-    } else if (hour > 4 && hour <= 11) {
-        welcomeText = "Ready for breakfast?"
-    } else if (hour > 11 && hour <= 15) {
-        welcomeText = "Ready for lunch?"
+        welcomeText = "Ready for a night out?";
+        timeOfDay = "Good Evening, ";
+    } else if (hour > 4 && hour < 12) {
+        welcomeText = "Ready for breakfast?";
+        timeOfDay = "Good Morning, ";
+    } else if (hour >= 12 && hour <= 15) {
+        welcomeText = "Ready for lunch?";
+        timeOfDay = "Good Afternoon, ";
     } else if (hour > 15 && hour <= 21) {
-        welcomeText = "Ready for dinner?"
+        welcomeText = "Ready for dinner?";
+        timeOfDay = "Good Evening, ";
     } else {
-        welcomeText = "Ready for some fun?"
+        welcomeText = "Ready for some fun?";
+        timeOfDay = "Hello, ";
     }
 
     document.getElementById("welcome_text").innerHTML = welcomeText;
+    document.getElementById("time_of_day").innerHTML = timeOfDay + "User!"; //hardcoded username, replace with actual username when auth set up
+    
 
 }
 
