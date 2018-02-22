@@ -59,7 +59,7 @@ function onResume() {
 function onLoad() {
     changeWelcomeText();
     console.log(hour);
-    generateCard();
+    generateCards();
 }
 
 function changeWelcomeText() {
@@ -94,7 +94,8 @@ function getResults() {
 
 }
 
-function generateTags(iteration, returnedLocation) {
+function generateTag(iteration, returnedLocation) {
+    console.log(returnedLocation);
     return `
 <div class="col-3">
     <div class="content_tag_div">
@@ -104,17 +105,10 @@ function generateTags(iteration, returnedLocation) {
 `;
 }
 
-function generateCard() {
-    var returnedLocation = {
-        name: "test",
-        placeId: "test",
-        address: "test",
-        photo: '../img/testImages/test_image_2.png',
-        types: ['test', 'moreTest', 't3st']
-    }
+function generateCard(returnedLocation) {
     var tags = "";
     for (var i = 0; i < 3; i++) {
-        tags += generateTags(i, returnedLocation);
+        tags += generateTag(i, returnedLocation);
     }
     const contentCard = `
 <div class="content_card">
@@ -140,10 +134,23 @@ function generateCard() {
 </div>
 `;
     console.log(contentCard);
-    document.getElementById("generated_content").innerHTML = contentCard;
+    return contentCard;
 }
 
-
+function generateCards() {
+    var returnedLocation = {
+        name: "test",
+        placeId: "test",
+        address: "test",
+        photo: '../img/testImages/test_image_2.png',
+        types: ['test', 'moreTest', 't3st']
+    }
+    var generatedContent = "";
+    for (var i = 0; i < 20; i++){
+        generatedContent += generateCard(returnedLocation);
+    }
+    document.getElementById("generated_content").innerHTML = generatedContent;
+}
 
 
 /*
