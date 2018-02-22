@@ -270,15 +270,15 @@ h1 {
     background-color: #D05754;
     color: #FFF;
     display: inline-block;
-    float: left;
+    width: 100%;
 }
 
 .content_tag_text {
     font-family: 'Dosis', sans-serif;
     margin: 2px;
-    padding-left: 20px;
-    padding-right: 20px;
-    font-size: 1.2em;
+    /*padding-left: 20px;
+    padding-right: 20px;*/
+    font-size: 1.1em;
 }
 
 
