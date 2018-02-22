@@ -188,14 +188,21 @@ h1 {
 }
 
 .welcome_text_div {
-    position: absolute;
+    /*position: absolute;*/
     bottom: 20%;
     left: 30%;
     color: #337E73;
+    padding-top:  20px;
 }
 
 #welcome_text{
     font-size: 5vw;
+    margin-bottom: 0;
+}
+
+#time_of_day {
+    font-size: 5vw;
+    margin-bottom: 0;
 }
 
 .content_button {
