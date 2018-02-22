@@ -187,8 +187,13 @@ h1 {
 
 .welcome_text_div {
     position: absolute;
-    bottom: 0;
+    bottom: 20%;
+    left: 30%;
     color: #337E73;
+}
+
+#welcome_text{
+    font-size: 5vw;
 }
 
 .content_button {
