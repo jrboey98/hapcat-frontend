@@ -215,13 +215,13 @@ h1 {
     box-shadow: 7px 7px 5px #888888;
 }
 
-.footer_icon_button {
+.footer_icon_div {
     background-color: #510B5D;
     border: none;
     width: 100%;
 }
 
-    .footer_icon_button:active {
+    .footer_icon_div_active {
         background-color: #301235;
         border: none;
         width: 100%;
@@ -261,14 +261,43 @@ h1 {
     opacity: 0.8;
     color: #000;
     display: inline-block;
+    position: absolute;
+    z-index: 3;
+}
+
+/*These next classes are for positioning the names alternating on different sides of the card to break up monotony. Cant decide how I feel about it*/
+
+/*.content_name_div_left {
+    font-family: 'Raleway', sans-serif;
+    margin: 5px;
+    border-radius: 20px;
+    background-color: #FFF;
+    opacity: 0.8;
+    color: #000;
+    display: inline-block;
     font-size: 1.7em;
     position: absolute;
     z-index: 3;
 }
 
+.content_name_div_right {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 20px;
+    background-color: #FFF;
+    opacity: 0.8;
+    color: #000;
+    display: inline-block;
+    font-size: 1.7em;
+    position: absolute;
+    z-index: 3;
+    right: 5px;
+    top: 5px;
+}*/
+
 .content_name {
     margin: 5px;
     opacity: 1;
+    font-size: 1.5em;
 }
 
 .content_tag_div {
