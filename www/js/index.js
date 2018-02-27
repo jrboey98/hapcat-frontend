@@ -59,7 +59,7 @@ function onResume() {
 function onLoad() {
     changeWelcomeText();
     console.log(hour);
-    generateCards();
+    init();
 }
 
 function changeWelcomeText() {
@@ -90,8 +90,26 @@ function changeWelcomeText() {
 
 //Google Places
 
-function getResults() {
+function getResults(callback) {
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', '../../sampleJson/sample.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () {
+        if (xobj.readyState == 4 && xobj.status == "200") {
+            // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+            callback(xobj.responseText);
+        }
+    };
+    xobj.send(null); 
+}
 
+function init() {
+    getResults(function (response) {
+        // Parse JSON string into object
+        console.log(response);
+        var parsed = JSON.parse(response);
+        generateCards(parsed);
+    });
 }
 
 function generateTag(iteration, returnedLocation) {
@@ -137,18 +155,17 @@ function generateCard(returnedLocation) {
     return contentCard;
 }
 
-function generateCards() {
-    var returnedLocation = {
-        name: "test",
-        placeId: "test",
-        address: "test",
-        photo: '../img/testImages/test_image_2.png',
-        types: ['test', 'moreTest', 't3st']
-    }
+function generateCards(parsed) {
+    //var returnedLocation = new Array();
     var generatedContent = "";
-    for (var i = 0; i < 20; i++){
-        generatedContent += generateCard(returnedLocation);
+    for (var key in parsed) {
+        //returnedLocation.push = sampleData[key];
+        console.log(parsed[key]);
+        generatedContent += generateCard(parsed[key]);
     }
+    //for (var i = 0; i < 20; i++){
+    //    generatedContent += generateCard(returnedLocation);
+    //}
     document.getElementById("generated_content").innerHTML = generatedContent;
 }
 
