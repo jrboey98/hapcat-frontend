@@ -27,12 +27,10 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-
-
     <!-- bootstrap links for CSS and JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval' data: gap: https://ssl.gstatic.com  https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; script-src * 'unsafe-inline' 'unsafe-eval'; img-src *">
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
@@ -47,298 +45,406 @@
 
 
     <title>Hapcat</title>
+    <script>
+
+        //Places API stuff starts right here
+        // This example requires the Places library. Include the libraries=places
+        // parameter when you first load the API. For example:
+        // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+        var map;
+        var infowindow;
+        var newplace = 'university';
+        var place;
+
+        /*
+        function searchTest() {
+            newplace = document.getElementById('myText').value;
+
+            initMap();
+
+        }
+        */
+
+        //gets user location
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(initPlace);
+                initMap();
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        //sets search location to user location
+        function initPlace(position) {
+            place = { lat: position.coords.latitude, lng: position.coords.longitude };
+        }
+
+
+
+        function initMap() {
+
+            //set current place
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: place,
+                zoom: 15
+            });
+
+            //create map
+            infowindow = new google.maps.InfoWindow();
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: place,
+                radius: 500,
+                type: ['restaurant']
+            }, callback);
+        }
+
+        //results found here in results array
+        function callback(results, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < results.length; i++) {
+                    createMarker(results[i]);
+                }
+
+                //create a string of name, types & address
+                placeList = results[0].name;
+                document.getElementById('output').innerHTML = placeList;
+                //get photo
+                var photos = results[0].photos;
+                if (photos) { var pic = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
+
+                placeList = results[1].name + ";       " + results[1].types + ": " + results[1].formatted_address;
+                document.getElementById('output2').innerHTML = placeList;
+                photos = results[1].photos;
+                if (photos) { var pic2 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
+
+                placeList = results[2].name + ";       " + results[2].types + ": " + results[2].formatted_address;
+                document.getElementById('output3').innerHTML = placeList;
+                photos = results[2].photos;
+                if (photos) { var pic3 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
+
+                //send photos to html
+                document.getElementById('placeOut').src = pic;
+                document.getElementById('placeOut2').src = pic2;
+                document.getElementById('placeOut3').src = pic3;
+            }
+        }
+        //end places stuff
+
+
+        //marks places in map don't worry about this stuff
+        function createMarker(place) {
+            var placeLoc = place.geometry.location;
+            var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+            });
+
+            google.maps.event.addListener(marker, 'click', function () {
+                infowindow.setContent(place.name);
+                infowindow.open(map, this);
+            });
+        }
+    </script>
 </head>
-    <body onload="onLoad()">
-        <div class="app">
-            <div class="header">
-                <div class="search_div">
-                        <input type="text" class="search" placeholder=" Search your area..." />
-                </div>
-                <div class="logo_div">
-                    <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
-                    <img src="img/logo.svg" class="header_logo" />
-                </div>
+<body onload="onLoad()">
+    <script type="text/javascript">getLocation();</script>
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3gc9QZftAdcHb0fa_s-W-8srB7ecqEjI&libraries=places&callback=initMap" async defer></script>
+    <div class="app">
+        <div class="header">
+            <div class="search_div">
+                <input type="text" class="search" placeholder=" Search your area..." />
             </div>
-            <div class="content">
-                <div class="welcome_card">
-                    <div class="welcome_text_div">
-                        <p id="time_of_day"></p>
-                        <p id="welcome_text"></p>
-                    </div>
-                </div>
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">Grand Corona Cafe</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">2.6mi</h4>
-                            </div>
-                            <img src="img/testImages/testImage.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Cafe</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">Red and Black Bar and Grill</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">5.1mi</h4>
-                            </div>
-                            <img src="img/testImages/test_image_2.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Drinks</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">Samurai Hibachi</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">2.3mi</h4>
-                            </div>
-                            <img src="img/testImages/test_image_3.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Asian</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">The Rail</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">0.6mi</h4>
-                            </div>
-                            <img src="img/testImages/test_image_4.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Burgers</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">Grand Corona Cafe</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">0.6mi</h4>
-                            </div>
-                            <img src="img/testImages/testImage.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Cafe</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="content_card">
-                    <div class="content_name_photo">
-                        <div class="content_photo_div">
-                            <div class="content_name_div">
-                                <h4 class="content_name">Grand Corona Cafe</h4>
-                            </div>
-                            <div class="content_distance_div">
-                                <h4 class="content_distance">0.6mi</h4>
-                            </div>
-                            <img src="img/testImages/testImage.png" class="content_photo" />
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-3">
-                                <div class="content_tag_div">
-                                    <p class="content_tag_text">Lunch</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #337E7B;">
-                                    <p class="content_tag_text">Dinner</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <div class="content_tag_div" style="background-color: #D0B554;">
-                                    <p class="content_tag_text">Cafe</p>
-                                </div>
-                            </div>
-                            <div class="col-3">
-                                <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-                <button class="content_button">View the next 20 &gt;</button>
-                <div class="floating_action_button">
-                    <img src="img/plus.svg" height="75" width="75" />
-                </div>
-            </div>
-            <div class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-4">
-                            <button class="footer_icon_div_active">
-                                <!--<div class="svg footer_icon">-->
-                                    <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
-                                    <img src="img/search.svg" class="svg footer_icon" />
-                                
-                            </button>
-                        </div>
-                        <div class="col-4">
-                            <button class="footer_icon_div">
-                               <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
-                                <img src="img/search.svg" class="svg footer_icon" />
-                            </button>
-                        </div>
-                        <div class="col-4">
-                            <button class="footer_icon_div">
-                                <img src="img/search.svg" class="svg footer_icon" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
-
-
-                <!--<div class="footer_icon_div">
-                    <button class="footer_icon_button">
-                        <img src="img/discoverIcon.svg" class="svg footer_icon" />
-                    </button>
-                </div>
-                <div class="footer_icon_div">
-                    <button class="footer_icon_button">
-                        <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
-                        <img src="img/search.svg" class="svg footer_icon" />
-                    </button>                
-                </div>
-                <div class="footer_icon_div">
-                    <button class="footer_icon_button">
-                        <img src="img/search.svg" class="svg footer_icon" />
-                    </button>
-                </div>-->
+            <div class="logo_div">
+                <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
+                <img src="img/logo.svg" class="header_logo" />
             </div>
         </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-    </body>
+        <div id="map"></div>
+
+        <div class="content">
+            <div class="welcome_card">
+                <div class="welcome_text_div">
+                    <p id="time_of_day"></p>
+                    <p id="welcome_text"></p>
+                </div>
+            </div>
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name" id="output"></h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance"></h4>
+                        </div>
+                        <img src="placeOut" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Cafe</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name">Red and Black Bar and Grill</h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance">5.1mi</h4>
+                        </div>
+                        <img src="img/testImages/test_image_2.png" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Drinks</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name">Samurai Hibachi</h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance">2.3mi</h4>
+                        </div>
+                        <img src="img/testImages/test_image_3.png" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Asian</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name">The Rail</h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance">0.6mi</h4>
+                        </div>
+                        <img src="img/testImages/test_image_4.png" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Burgers</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name">Grand Corona Cafe</h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance">0.6mi</h4>
+                        </div>
+                        <img src="img/testImages/testImage.png" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Cafe</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="content_card">
+                <div class="content_name_photo">
+                    <div class="content_photo_div">
+                        <div class="content_name_div">
+                            <h4 class="content_name">Grand Corona Cafe</h4>
+                        </div>
+                        <div class="content_distance_div">
+                            <h4 class="content_distance">0.6mi</h4>
+                        </div>
+                        <img src="img/testImages/testImage.png" class="content_photo" />
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-3">
+                            <div class="content_tag_div">
+                                <p class="content_tag_text">Lunch</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #337E7B;">
+                                <p class="content_tag_text">Dinner</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="content_tag_div" style="background-color: #D0B554;">
+                                <p class="content_tag_text">Cafe</p>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <p class=" content_tag_text" style="font-size:1.5em;">. . .</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <button class="content_button">View the next 20 &gt;</button>
+            <div class="floating_action_button">
+                <img src="img/plus.svg" height="75" width="75" />
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <button class="footer_icon_div_active">
+                            <!--<div class="svg footer_icon">-->
+                            <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
+                            <img src="img/search.svg" class="svg footer_icon" />
+
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="footer_icon_div">
+                            <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
+                            <img src="img/search.svg" class="svg footer_icon" />
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="footer_icon_div">
+                            <img src="img/search.svg" class="svg footer_icon" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <!--<div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <img src="img/discoverIcon.svg" class="svg footer_icon" />
+                </button>
+            </div>
+            <div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
+                    <img src="img/search.svg" class="svg footer_icon" />
+                </button>
+            </div>
+            <div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <img src="img/search.svg" class="svg footer_icon" />
+                </button>
+            </div>-->
+        </div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</body>
 </html>

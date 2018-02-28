@@ -59,6 +59,8 @@ function onResume() {
 function onLoad() {
     changeWelcomeText();
     console.log(hour);
+    getLocation();
+    initMap();
 }
 
 function changeWelcomeText() {
@@ -88,106 +90,6 @@ function changeWelcomeText() {
 }
 
 
-//Places API stuff starts right here 
-// This example requires the Places library. Include the libraries=places
-// parameter when you first load the API. For example:
-// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-var map;
-var infowindow;
-var newplace = 'university';
-var place;
-
-/*
-function searchTest() {
-    newplace = document.getElementById('myText').value;
-
-    initMap();
-
-}
-*/
-
-//gets user location
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(initPlace);
-        initMap();
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-
-//sets search location to user location
-function initPlace(position) {
-    place = { lat: position.coords.latitude, lng: position.coords.longitude };
-}
-
-
-
-function initMap() {
-
-    //set current place
-    map = new google.maps.Map(document.getElementById('map'), {
-        center: place,
-        zoom: 15
-    });
-
-    //create map
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-        location: place,
-        radius: 500,
-        //add type here to filter by type
-    }, callback);
-}
-
-//results found here in results array
-function callback(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-        }
-
-        //create a string of name, types & address
-        placeList = results[0].name + ";       " + results[0].types + ": " + results[0].formatted_address;
-        document.getElementById('output').innerHTML = placeList;
-        //get photo
-        var photos = results[0].photos;
-        if (photos) { pic = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
-
-        placeList = results[1].name + ";       " + results[1].types + ": " + results[1].formatted_address;
-        document.getElementById('output2').innerHTML = placeList;
-        photos = results[1].photos;
-        if (photos) { var pic2 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
-
-        placeList = results[2].name + ";       " + results[2].types + ": " + results[2].formatted_address;
-        document.getElementById('output3').innerHTML = placeList;
-        photos = results[2].photos;
-        if (photos) { var pic3 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
-
-        //send photos to html
-        document.getElementById('placeOut').src = pic;
-        document.getElementById('placeOut2').src = pic2;
-        document.getElementById('placeOut3').src = pic3;
-    }
-}
-//end places stuff
-
-
-//marks places in map don't worry about this stuff
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: place.geometry.location
-    });
-
-    google.maps.event.addListener(marker, 'click', function () {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
-    });
-}
 
 /*
  * Replace all SVG images with inline SVG
