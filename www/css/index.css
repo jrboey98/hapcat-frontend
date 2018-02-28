@@ -206,12 +206,14 @@ h1 {
 }
 
 .content_button {
+    font-family: 'Raleway', sans-serif;
     width: 90%;
     height: 60px;
     margin-top: 10px;
-    background: linear-gradient(to bottom right, #FFE892, #D0B554 );
+    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
     border: none;
     font-size: 20px;
+    color: #FFF;
     box-shadow: 7px 7px 5px #888888;
 }
 
@@ -322,12 +324,19 @@ h1 {
     margin: 5px;
 }
 
+.content_tag_column_div{
+    padding: 0;
+}
+
 .content_tag_div {
     margin: 5px;
     border-radius: 10px;
     background-color: #D05754;
     color: #FFF;
-    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    overflow: hidden;
     width: 100%;
 }
 
@@ -337,7 +346,6 @@ h1 {
     /*padding-left: 20px;
     padding-right: 20px;*/
     font-size: 1.1em;
-    display: inline-block;
 }
 
 

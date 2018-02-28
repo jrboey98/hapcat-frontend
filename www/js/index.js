@@ -106,17 +106,18 @@ function getResults(callback) {
 function init() {
     getResults(function (response) {
         // Parse JSON string into object
-        console.log(response);
         var parsed = JSON.parse(response);
         generateCards(parsed);
     });
 }
 
-function generateTag(iteration, returnedLocation) {
-    console.log(returnedLocation);
+function generateTag(iteration, returnedLocation, colors) {
+    var random = Math.floor((Math.random() * colors.length));
+    var tag_color = colors[random];
+    colors.splice(random, 1);
     return `
-<div class="col-3">
-    <div class="content_tag_div">
+<div class="content_tag_column_div col-3">
+    <div class="content_tag_div" style="background-color: ${tag_color};">
         <p class="content_tag_text">${returnedLocation.types[iteration]}</p>
     </div>
 </div>
@@ -124,12 +125,18 @@ function generateTag(iteration, returnedLocation) {
 }
 
 function generateCard(returnedLocation) {
+    var colors = [
+        "#D0B554",
+        "#7D3988",
+        "#D05754",
+        "#337E7B"
+    ]
     var tags = "";
     for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation);
+        tags += generateTag(i, returnedLocation, colors);
     }
     const contentCard = `
-<div class="content_card">
+<div class="content_card" onClick="openNodeDetail('${returnedLocation.name}')">
     <div class="content_name_photo">
         <div class="content_photo_div">
             <div class="content_name_div">
@@ -151,7 +158,6 @@ function generateCard(returnedLocation) {
     </div>
 </div>
 `;
-    console.log(contentCard);
     return contentCard;
 }
 
@@ -160,13 +166,17 @@ function generateCards(parsed) {
     var generatedContent = "";
     for (var key in parsed) {
         //returnedLocation.push = sampleData[key];
-        console.log(parsed[key]);
         generatedContent += generateCard(parsed[key]);
     }
     //for (var i = 0; i < 20; i++){
     //    generatedContent += generateCard(returnedLocation);
     //}
     document.getElementById("generated_content").innerHTML = generatedContent;
+}
+
+function openNodeDetail(name) {
+    var messageText = "Opening node detail for " + name;
+    console.log(messageText);
 }
 
 
