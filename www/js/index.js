@@ -141,6 +141,7 @@ function generateCard(returnedLocation) {
         <div class="content_photo_div">
             <div class="content_name_div">
                 <h4 class="content_name">${returnedLocation.name}</h4>
+                <p class="content_datetime">Open Today from 4:00pm to 9:30pm</p>
             </div>
             <div class="content_distance_div">
                 <h4 class="content_distance">2.6mi</h4>
