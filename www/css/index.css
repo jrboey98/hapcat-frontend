@@ -388,3 +388,8 @@ textarea:focus, input:focus {
     top: 50%;
     
 }
+
+.forgotpass {
+    
+    padding: 15px;
+}
