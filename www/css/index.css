@@ -22,6 +22,10 @@
     outline: none;
 }
 
+    *:focus {
+        outline: none;
+    }
+
 body {
     -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
@@ -104,8 +108,8 @@ h1 {
 
 .header {
     width: 100%;
-    height: 60px;
-    background-color: #510B5D;
+    height: 70px;
+    background: linear-gradient(to top, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
     position: fixed;
     top: 0;
     z-index: 4;
@@ -114,7 +118,7 @@ h1 {
 .footer {
     width: 100%;
     height: 50px;
-    background-color: #510B5D;
+    background: linear-gradient(to bottom, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
     position: fixed;
     bottom: 0;
     z-index: 4;
@@ -149,14 +153,9 @@ h1 {
 }
 
 .header_logo {
-    height: 90%;
+    height: 80%;
     margin-right: 10%;
     margin-top: 5px;
-}
-
-.footer_icon_div {
-    float: left;
-    width: 33.33%;
 }
 
 .footer_icon {
@@ -218,16 +217,17 @@ h1 {
 }
 
 .footer_icon_div {
-    background-color: #510B5D;
+    background-color: transparent;
     border: none;
     width: 100%;
 }
 
-    .footer_icon_div_active {
-        background-color: #301235;
-        border: none;
-        width: 100%;
-    }
+.footer_icon_div_active {
+    background-color: #000;
+    opacity: 0.3;
+    border: none;
+    width: 100%;
+}
 
 .floating_action_button {
     position: fixed;
