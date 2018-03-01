@@ -390,12 +390,10 @@ h1 {
 /* Add Animation */
 @keyframes animatetop {
     from {
-        margin-bottom: 400vw;
         opacity: 0
     }
 
     to {
-        margin-bottom: 0;
         opacity: 1
     }
 }
@@ -533,22 +531,24 @@ h1 {
 .modal_about {
     margin-left: 3vw;
     margin-top: 2vw;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.2);
     display: inline-block;
     padding: 1vw;
     float: left;
     box-shadow: 7px 7px 5px #888888;
     border-radius: 25px;
+    color: #FFF
 }
 
 .modal_description {
     width: 94%;
     margin: 4vw auto;
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.2);
     display: inline-block;
     padding: 1vw;
     box-shadow: 7px 7px 5px #888888;
     border-radius: 25px;
+    color: #FFF;
 }
 
 .modal_tag_area {
