@@ -108,7 +108,7 @@ h1 {
 
 .header {
     width: 100%;
-    height: 70px;
+    height: 9vh;
     background: linear-gradient(to top, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
     position: fixed;
     top: 0;
@@ -117,7 +117,7 @@ h1 {
 
 .footer {
     width: 100%;
-    height: 50px;
+    height: 8vh;
     background: linear-gradient(to bottom, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
     position: fixed;
     bottom: 0;
@@ -125,8 +125,8 @@ h1 {
 }
 
 .content {
-    margin-top:20%;
-    margin-bottom:20%;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
 }
 
 .logo_div {
@@ -144,29 +144,29 @@ h1 {
 .search {
     width: 80%;
     float: left;
-    padding: 6px;
+    padding: 1.5vh;
     border: none;
-    margin-top: 15px;
-    margin-left: 16px;
-    font-size: 17px;
-    border-radius: 25px;
+    margin-top: 1vh;
+    margin-left: 4vw;
+    font-size: 2vh;
+    border-radius: 10px 100px / 120px;
 }
 
 .header_logo {
     height: 80%;
-    margin-right: 10%;
-    margin-top: 5px;
+    margin-right: 5vw;
+    margin-top: .5vh;
 }
 
 .footer_icon {
-    height: 50px;
-    padding: 7px;
+    height: 8vh;
+    padding: 1vh;
     fill: white;
 }
 
 .content_card {
     width: 90%;
-    height: 200px;
+    height: 24vh;
     background: #E4E4E4;
     margin-top: 10px;
     margin-right: auto;
@@ -177,7 +177,7 @@ h1 {
 .welcome_card {
     position: relative;
     width: 90%;
-    height: 100px;
+    height: 15vh;
     background: linear-gradient(to bottom right, #92FFFB, #FFE892 );
     margin-top: 10px;
     margin-right: auto;
@@ -188,10 +188,10 @@ h1 {
 
 .welcome_text_div {
     /*position: absolute;*/
-    bottom: 20%;
-    left: 30%;
+    bottom: 5vh;
+    left: 30vw;
     color: #337E73;
-    padding-top:  20px;
+    padding-top:  3vh;
 }
 
 #welcome_text{
@@ -207,11 +207,11 @@ h1 {
 .content_button {
     font-family: 'Raleway', sans-serif;
     width: 90%;
-    height: 60px;
+    height: 10vh;
     margin-top: 10px;
     background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
     border: none;
-    font-size: 20px;
+    font-size: 5vw;
     color: #FFF;
     box-shadow: 7px 7px 5px #888888;
 }
@@ -231,9 +231,14 @@ h1 {
 
 .floating_action_button {
     position: fixed;
-    bottom: 70px;
-    right: 15px;
+    bottom: 8vh;
+    right: 2vw;
     z-index: 4;
+}
+
+.event_add_button{
+    width: 15vw;
+    height: 18vw;
 }
 
 /*discover content card interior*/
@@ -258,8 +263,8 @@ h1 {
 
 .content_name_div {
     font-family: 'Raleway', sans-serif;
-    margin: 5px;
-    border-radius: 20px;
+    margin: 1vw;
+    border-radius: 10vw;
     background-color: #FFF;
     opacity: 0.9;
     color: #000;
@@ -298,19 +303,18 @@ h1 {
 }*/
 
 .content_name {
-    margin-top: 5px;
-    margin-right: 5px;
-    margin-left: 8px;
+    padding-left: 4vw;
+    padding-right: 4vw;
     margin-bottom: 0;
     text-align: left;
     opacity: 1;
-    font-size: 1.5em;
+    font-size: 3vh;
 }
 
 .content_datetime {
     margin-bottom: 0;
-    margin-right: 8px;
-    margin-left: 8px;
+    margin-right: 4vw;
+    margin-left: 4vw;
     text-align: left;
 }
 
@@ -340,8 +344,8 @@ h1 {
 }
 
 .content_tag_div {
-    margin: 5px;
-    border-radius: 10px;
+    margin: .2vh;
+    border-radius: 2vh;
     background-color: #D05754;
     color: #FFF;
     white-space: nowrap;
@@ -353,10 +357,8 @@ h1 {
 
 .content_tag_text {
     font-family: 'Dosis', sans-serif;
-    margin: 2px;
-    /*padding-left: 20px;
-    padding-right: 20px;*/
-    font-size: 1.1em;
+    margin: .1vh;
+    font-size: 2vh;
 }
 
 /*Modal Classes*/
@@ -388,12 +390,12 @@ h1 {
 /* Add Animation */
 @keyframes animatetop {
     from {
-        top: -300px;
+        margin-bottom: 400vw;
         opacity: 0
     }
 
     to {
-        top: 0;
+        margin-bottom: 0;
         opacity: 1
     }
 }
