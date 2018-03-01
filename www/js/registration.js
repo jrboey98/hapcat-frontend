@@ -57,19 +57,17 @@ function onLoad() {
 
 }
 
-function showDatepicker() {
-    var options = {
-        date: new Date(),
-        mode: 'date'
-    };
+var options = {
+    date: new Date(),
+    mode: 'date'
+};
 
-    function onSuccess(date) {
-        alert('Selected date: ' + date);
-    }
-
-    function onError(error) { // Android only 
-        alert('Error: ' + error);
-    }
-
-    datePicker.show(options, onSuccess, onError);
+function onSuccess(date) {
+    alert('Selected date: ' + date);
 }
+
+function onError(error) { // Android only 
+    alert('Error: ' + error);
+}
+
+datePicker.show(options, onSuccess, onError);

@@ -50,6 +50,7 @@ var app = {
 //Global variables
 var currentdate = new Date();
 var hour = currentdate.getHours();
+var parsed;
 
 // Handle the resume event
 function onResume() {
@@ -106,25 +107,27 @@ function getResults(callback) {
 function init() {
     getResults(function (response) {
         // Parse JSON string into object
-        var parsed = JSON.parse(response);
+        parsed = JSON.parse(response);
         generateCards(parsed);
     });
 }
 
-function generateTag(iteration, returnedLocation, colors) {
+function generateTag(iteration, returnedLocation, colors, columnSplit, use) {
     var random = Math.floor((Math.random() * colors.length));
     var tag_color = colors[random];
     colors.splice(random, 1);
     return `
-<div class="content_tag_column_div col-3">
-    <div class="content_tag_div" style="background-color: ${tag_color};">
-        <p class="content_tag_text">${returnedLocation.types[iteration]}</p>
+<div class="${use}_tag_column_div col-${columnSplit}">
+    <div class="${use}_tag_div" style="background-color: ${tag_color};">
+        <p class="${use}_tag_text">${returnedLocation.types[iteration]}</p>
     </div>
 </div>
 `;
 }
 
 function generateCard(returnedLocation) {
+    var columnSplit = 3;
+    var use = "content";
     var colors = [
         "#D0B554",
         "#7D3988",
@@ -133,10 +136,10 @@ function generateCard(returnedLocation) {
     ]
     var tags = "";
     for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation, colors);
+        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
     }
     const contentCard = `
-<div class="content_card" onClick="openNodeDetail('${returnedLocation.name}')">
+<div class="content_card" onClick="openNodeDetail('${returnedLocation.placeId}')">
     <div class="content_name_photo">
         <div class="content_photo_div">
             <div class="content_name_div">
@@ -162,6 +165,14 @@ function generateCard(returnedLocation) {
     return contentCard;
 }
 
+function getPlace(placeId) {
+    for (var key in parsed) {
+        if (parsed[key].placeId == placeId) {
+            return parsed[key];
+        }
+    }
+}
+
 function generateCards(parsed) {
     //var returnedLocation = new Array();
     var generatedContent = "";
@@ -175,10 +186,92 @@ function generateCards(parsed) {
     document.getElementById("generated_content").innerHTML = generatedContent;
 }
 
-function openNodeDetail(name) {
-    var messageText = "Opening node detail for " + name;
+function openNodeDetail(returnedLocation) {
+    var messageText = "Opening node detail for " + returnedLocation.name;
     console.log(messageText);
+    console.log(returnedLocation.name);
+    constructModal(returnedLocation);
 }
+
+function constructModal(returnedLocationId) {
+    var returnedLocation = getPlace(returnedLocationId);
+    var columnSplit = 4;
+    var use = "modal";
+    var lorem = getLorem();
+    var colors = [
+        "#D0B554",
+        "#7D3988",
+        "#D05754",
+        "#337E7B"
+    ]
+    var tags = "";
+    for (var i = 0; i < 3; i++) {
+        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
+    }
+    const modalHTML = `
+<div id="nodeDetail" class="modal">
+    <div class="modal_content">
+        <div class="modal_name_photo">
+            <div class="modal_photo_div">
+                <div class="modal_name_div">
+                    <h4 class="modal_name">${returnedLocation.name}</h4>
+                    <p class="modal_paragraph">Open Today from 4:00pm to 9:30pm</p>
+                </div>
+                <div class="modal_weather_div">
+                    <p class="modal_paragraph">Sunny</p>
+                    <h3 class="modal_h3">78&#176;</h3>
+                </div>
+                <div class="modal_distance_div">
+                    <h4 class="modal_distance">2.6mi</h4>
+                </div>
+                <img src="${returnedLocation.photo}" class="modal_photo" />
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                ${tags}
+            </div>
+        </div>
+        <div class="modal_about">
+            <p class="lato modal_paragraph">${returnedLocation.address}</p>
+            <p class="lato modal_paragraph">1741 Likes</p>
+            <p class="lato modal_paragraph">24 Dislikes</p>
+            <p class="lato modal_paragraph">Liked by you</p>
+            <p class="lato modal_paragraph">Trending Now</p>
+        </div>
+        <div class="modal_description">
+            <p class="lato modal_paragraph">${lorem}</p>
+        </div>
+    </div>
+</div>
+`;
+    document.getElementById("node_detail_generation").innerHTML = modalHTML;
+    // Get the modal
+    var modal = document.getElementById('nodeDetail');
+    modal.style.display = "block";
+}
+
+//Modal 
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function getLorem() {
+    return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+}
+
+
 
 
 /*
