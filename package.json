@@ -12,12 +12,16 @@
     "dependencies": {
         "cordova-android": "^7.0.0",
         "cordova-ios": "^4.5.4",
+        "cordova-plugin-date-input": "git+https://github.com/leecrossley/cordova-plugin-date-input.git",
+        "cordova-plugin-datepicker": "^0.9.3",
+        "cordova-plugin-device": "git+https://github.com/apache/cordova-plugin-device.git",
         "cordova-plugin-whitelist": "^1.3.3",
         "cordova-windows": "4.4.2"
     },
     "cordova": {
         "plugins": {
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-datepicker": {}
         },
         "platforms": [
             "android",

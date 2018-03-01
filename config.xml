@@ -28,4 +28,13 @@
     <engine name="android" spec="^7.0.0" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="windows" spec="4.4.2" />
+    <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
+
+  <feature name="DatePicker">
+    <param name="ios-package" value="DatePicker"/>
+  </feature>
+
+  <feature name="DatePickerPlugin">
+    <param name="android-package" value="com.okaybmd.cordova.plugin.datepicker.DatePickerPlugin"/>
+  </feature>
 </widget>
