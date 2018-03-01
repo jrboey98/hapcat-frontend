@@ -57,14 +57,6 @@
         var newplace = 'university';
         var place;
 
-        /*
-        function searchTest() {
-            newplace = document.getElementById('myText').value;
-
-            initMap();
-
-        }
-        */
 
         //gets user location
         function getLocation() {
@@ -113,20 +105,20 @@
                 document.getElementById('output').innerHTML = placeList;
                 //get photo
                 var photos = results[0].photos;
-                if (photos) { var pic = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
+                if (photos) { var pic = photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 }); }
 
-                placeList = results[1].name + ";       " + results[1].types + ": " + results[1].formatted_address;
+                placeList = results[1].name;
                 document.getElementById('output2').innerHTML = placeList;
                 photos = results[1].photos;
                 if (photos) { var pic2 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
 
-                placeList = results[2].name + ";       " + results[2].types + ": " + results[2].formatted_address;
+                placeList = results[2].name;
                 document.getElementById('output3').innerHTML = placeList;
                 photos = results[2].photos;
                 if (photos) { var pic3 = photos[0].getUrl({ 'maxWidth': 500, 'maxHeight': 500 }); }
 
                 //send photos to html
-                document.getElementById('placeOut').src = pic;
+                document.getElementById('placeOut').src = results[0].photos[0].getUrl({ 'maxWidth': 100, 'maxHeight': 100 });;
                 document.getElementById('placeOut2').src = pic2;
                 document.getElementById('placeOut3').src = pic3;
             }
@@ -155,7 +147,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3gc9QZftAdcHb0fa_s-W-8srB7ecqEjI&libraries=places&callback=initMap" async defer></script>
     <div class="app">
         <div class="header">
-            <div class="search_div">
+            <div>
                 <input type="text" class="search" placeholder=" Search your area..." />
             </div>
             <div class="logo_div">
@@ -181,7 +173,7 @@
                         <div class="content_distance_div">
                             <h4 class="content_distance"></h4>
                         </div>
-                        <img src="placeOut" class="content_photo" />
+                        <img id="placeOut" class="content_photo"  />
                     </div>
                 </div>
                 <div class="container">
@@ -213,12 +205,12 @@
                 <div class="content_name_photo">
                     <div class="content_photo_div">
                         <div class="content_name_div">
-                            <h4 class="content_name">Red and Black Bar and Grill</h4>
+                            <h4 class="content_name" id="output2"></h4>
                         </div>
                         <div class="content_distance_div">
                             <h4 class="content_distance">5.1mi</h4>
                         </div>
-                        <img src="img/testImages/test_image_2.png" class="content_photo" />
+                        <img src="placeOut2" class="content_photo" />
                     </div>
                 </div>
                 <div class="container">
@@ -250,7 +242,7 @@
                 <div class="content_name_photo">
                     <div class="content_photo_div">
                         <div class="content_name_div">
-                            <h4 class="content_name">Samurai Hibachi</h4>
+                            <h4 class="content_name" id="output3"></h4>
                         </div>
                         <div class="content_distance_div">
                             <h4 class="content_distance">2.3mi</h4>
@@ -416,10 +408,11 @@
                         </button>
                     </div>
                     <div class="col-4">
-                        <button class="footer_icon_div">
-                            <img src="img/search.svg" class="svg footer_icon" />
-                        </button>
-                    </div>
+                        <a href="login.html">
+                            <button class="footer_icon_div">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+</div>
                 </div>
             </div>
 

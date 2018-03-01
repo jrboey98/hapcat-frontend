@@ -266,6 +266,8 @@ h1 {
     z-index: 3;
 }
 
+
+
 /*These next classes are for positioning the names alternating on different sides of the card to break up monotony. Cant decide how I feel about it*/
 
 /*.content_name_div_left {
@@ -340,3 +342,49 @@ h1 {
 }
 
 
+.textinput_div {
+    font-family: 'Raleway', sans-serif;
+    border-radius: 20px;
+    background-color: #FFF;
+    opacity: 0.9;
+    color: #000;
+    width: 100%;
+    margin-bottom:3vw;
+}
+
+textarea:focus, input:focus {
+    outline: none;
+}
+
+.textinput_hint {
+    opacity: 1.0;
+    font-size: 1em;
+    margin-bottom: 0;
+    padding-left: 20px;
+    text-align:left;
+}
+
+.textinput {
+    opacity: 1.0;
+    font-size: 1.5em;
+    outline: none;
+    outline-style: none;
+    margin-left: 20px;
+    border: none;
+    border-color: transparent;
+    width: 175px;
+}
+
+
+.login_div {
+    width: 70%;
+    border-radius: 5px;
+    padding: 10px;
+    height: 50px;
+    
+    margin-right:auto;
+    margin-top: -25px;
+    margin-left: auto;
+    top: 50%;
+    
+}
