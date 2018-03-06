@@ -20,8 +20,7 @@ gulp.task('build-android',
 gulp.task('add-deps', [
   'add-bootstrap',
   'add-jquery',
-  'add-fonts',
-  'add-googlemaps'
+  'add-fonts'
 ]);
 
 
@@ -34,12 +33,6 @@ gulp.task('add-bootstrap', function() {
 gulp.task('add-jquery', function() {
   return gulp.src('node_modules/jquery/dist/**/*.js')
     .pipe(gulp.dest('www/lib/jquery'))
-});
-
-
-gulp.task('add-googlemaps', function() {
-  return gulp.src('node_modules/@google/maps/lib/**/*.js')
-    .pipe(gulp.dest('www/lib/google/maps'))
 });
 
 
