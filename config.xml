@@ -32,6 +32,10 @@
     <feature name="DatePickerPlugin">
         <param name="android-package" value="com.okaybmd.cordova.plugin.datepicker.DatePickerPlugin" />
     </feature>
+    <hook src="hook.js" type="before_prepare" />
+    <hook src="hook.js" type="after_prepare" />
+    <hook src="hook.js" type="before_compile" />
+    <hook src="hook.js" type="after_compile" />
     <engine name="android" spec="^7.0.0" />
     <engine name="ios" spec="^4.5.4" />
     <engine name="windows" spec="4.4.2" />
