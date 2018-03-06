@@ -28,5 +28,9 @@
             "ios",
             "windows"
         ]
+    },
+    "devDependencies": {
+        "cordova-lib": "^8.0.0",
+        "gulp": "^3.9.1"
     }
 }
