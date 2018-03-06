@@ -15,12 +15,18 @@ gulp.task('build-android',
       }
     }, callback);
 });
-gulp.task('add-deps', ['add-bootstrap']);
+gulp.task('add-deps', ['add-bootstrap', 'add-jquery']);
 
 
 gulp.task('add-bootstrap', function() {
   return gulp.src('node_modules/bootstrap/dist/**/*.+(js|css)')
     .pipe(gulp.dest('www/lib/bootstrap'))
+});
+
+
+gulp.task('add-jquery', function() {
+  return gulp.src('node_modules/jquery/dist/**/*.js')
+    .pipe(gulp.dest('www/lib/jquery'))
 });
 
 
