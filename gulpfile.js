@@ -15,7 +15,13 @@ gulp.task('build-android',
       }
     }, callback);
 });
-gulp.task('add-deps', ['add-bootstrap', 'add-jquery']);
+
+
+gulp.task('add-deps', [
+  'add-bootstrap',
+  'add-jquery',
+  'add-fonts'
+]);
 
 
 gulp.task('add-bootstrap', function() {
@@ -27,6 +33,38 @@ gulp.task('add-bootstrap', function() {
 gulp.task('add-jquery', function() {
   return gulp.src('node_modules/jquery/dist/**/*.js')
     .pipe(gulp.dest('www/lib/jquery'))
+});
+
+
+gulp.task('add-fonts', [
+  'add-lato',
+  'add-dosis',
+  'add-raleway',
+  'add-syncopate'
+]);
+
+
+gulp.task('add-dosis', function() {
+  return gulp.src('node_modules/typeface-dosis/**/*.+(css|woff|woff2)')
+    .pipe(gulp.dest('www/lib/typeface-dosis'))
+});
+
+
+gulp.task('add-raleway', function() {
+  return gulp.src('node_modules/typeface-raleway/**/*.+(css|woff|woff2)')
+    .pipe(gulp.dest('www/lib/typeface-raleway'))
+});
+
+
+gulp.task('add-syncopate', function() {
+  return gulp.src('node_modules/typeface-syncopate/**/*.+(css|woff|woff2)')
+    .pipe(gulp.dest('www/lib/typeface-syncopate'))
+});
+
+
+gulp.task('add-lato', function() {
+  return gulp.src('node_modules/typeface-lato/**/*.+(css|woff|woff2)')
+    .pipe(gulp.dest('www/lib/typeface-lato'))
 });
 
 

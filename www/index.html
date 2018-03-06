@@ -28,20 +28,25 @@
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
 
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *;">
+
     <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
 
     <!-- JQuery -->
     <script src="lib/jquery/jquery.js"></script>
 
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
 
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis|Raleway|Syncopate" rel="stylesheet">
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="lib/typeface-lato/index.css" />
+    <link rel="stylesheet" type="text/css" href="lib/typeface-dosis/index.css" />
+    <link rel="stylesheet" type="text/css" href="lib/typeface-raleway/index.css" />
+    <link rel="stylesheet" type="text/css" href="lib/typeface-syncopate/index.css" />
 
     <!--Places API-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
