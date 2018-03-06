@@ -20,7 +20,8 @@ gulp.task('build-android',
 gulp.task('add-deps', [
   'add-bootstrap',
   'add-jquery',
-  'add-fonts'
+  'add-fonts',
+  'add-icons'
 ]);
 
 
@@ -65,6 +66,22 @@ gulp.task('add-syncopate', function() {
 gulp.task('add-lato', function() {
   return gulp.src('node_modules/typeface-lato/**/*.+(css|woff|woff2)')
     .pipe(gulp.dest('www/lib/typeface-lato'))
+});
+
+
+gulp.task('add-icons', [
+  'add-evilicons',
+  'add-fontawesome'
+]);
+
+gulp.task('add-evilicons', function() {
+  return gulp.src('node_modules/evil-icons/assets/**')
+    .pipe(gulp.dest('www/lib/evil-icons'))
+});
+
+gulp.task('add-fontawesome', function() {
+  return gulp.src('node_modules/font-awesome/**/*.+(css|otf|eot|svg|ttf|woff|woff2)')
+    .pipe(gulp.dest('www/lib/font-awesome'))
 });
 
 
