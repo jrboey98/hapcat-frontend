@@ -162,7 +162,7 @@ h1 {
 /* Content Card */
 
 .content_card {
-    width: 90%;
+    width: 95%;
     height: 24vh;
     background: #E4E4E4;
     margin-top: 10px;
@@ -269,7 +269,7 @@ h1 {
 
 .welcome_card {
     position: relative;
-    width: 90%;
+    width: 95%;
     height: 15vh;
     background: linear-gradient(to bottom right, #92FFFB, #FFE892 );
     margin-top: 10px;
@@ -610,7 +610,7 @@ h1 {
 
 .modal_about {
     width: 94%;
-    margin: 4vw auto 0 auto;
+    margin: 1vh auto 0 auto;
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
     padding: 0 1vw 0 1vw;
