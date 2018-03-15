@@ -444,7 +444,7 @@ h1 {
     width: 95%;
     height: 80%;
     border-radius: 25px;
-    overflow-y: scroll;
+    /*overflow-y: scroll;*/
     animation-name: animatetop;
     animation-duration: 0.4s
 }
@@ -624,6 +624,8 @@ h1 {
     box-shadow: 7px 7px 5px #888888;
     border-radius: 15px 1px;
     color: #FFF;
+    overflow-y: scroll;
+    height: 16vh;
 }
 
 .lato.modal_paragraph {
