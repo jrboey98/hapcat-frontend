@@ -158,6 +158,7 @@ function hammer() {
     card.on('panend', dragEnd);
     
     var isDragging = false;
+    var delta = 0;
 
     function dragCard(ev) {
         var elem = ev.target;
@@ -171,13 +172,29 @@ function hammer() {
 
             elem.style.left = posX + "px";
 
-            
+            delta = ev.gesture.deltaX;
+        }
+    }
+
+    function offScreen() {
+        var id = setInterval(frame, 5);
+        function frame() {
+            if (posX == 0) {
+                clearInterval(id);
+            } else {
+                posX++;
+                elem.style.left = posX + "px";
+            }
         }
     }
     function dragEnd(ev) {
         isDragging = false;
         ev.target.style.left = "0px";
         console.log("Dragging Completed.")
+        if (delta >= 200) {
+            offScreen();
+        }
+        delta = 0;
     }
 }
 
