@@ -22,7 +22,6 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <vs:toolsetVersion xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">6.3.1</vs:toolsetVersion>
     <preference name="windows-target-version" value="10.0" />
     <plugin name="cordova-plugin-datepicker" spec="^0.9.3" />
     <feature name="DatePicker">

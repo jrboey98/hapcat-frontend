@@ -159,6 +159,7 @@ function hammer() {
     
     var isDragging = false;
     var delta = 0;
+    var posX = 0;
 
     function dragCard(ev) {
         var elem = ev.target;
@@ -168,7 +169,7 @@ function hammer() {
         if (!isDragging && !ev.gesture.isFinal) {
             isdragging = true;
             console.log("Currently Dragging...");
-            var posX = ev.gesture.deltaX;
+            posX = ev.gesture.deltaX;
 
             elem.style.left = posX + "px";
 
@@ -176,14 +177,14 @@ function hammer() {
         }
     }
 
-    function offScreen() {
-        var id = setInterval(frame, 5);
+    function offScreen(ev) {
+        var id = setInterval(frame, 20);
         function frame() {
             if (posX == 0) {
                 clearInterval(id);
             } else {
                 posX++;
-                elem.style.left = posX + "px";
+                ev.target.style.left = posX + "px";
             }
         }
     }
@@ -191,8 +192,9 @@ function hammer() {
         isDragging = false;
         ev.target.style.left = "0px";
         console.log("Dragging Completed.")
-        if (delta >= 200) {
-            offScreen();
+        if (delta >= 150) {
+            offScreen(ev);
+            ev.target.destroy;
         }
         delta = 0;
     }
