@@ -72,6 +72,7 @@ function init() {
         // Parse JSON string into object
         parsed = JSON.parse(response);
         constructCard(parsed[0]);
+        hammer();
     });
 }
 
@@ -104,8 +105,8 @@ function constructCard(returnedLocation) {
         tags += generateTag(i, returnedLocation, colors, columnSplit, use);
     }
     const cardHTML = `
-<div id="nodeDetail" class="card">
-    <div class="card_content">
+<div id="node_detail" class="card">
+    <div id="content" class="card_content">
         <div class="card_name_photo">
             <div class="card_photo_div">
                 <div class="card_name_div">
@@ -147,5 +148,39 @@ function constructCard(returnedLocation) {
 function getLorem() {
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
 }
+
+//hammer.js functions
+
+function hammer() {
+    var card = $('#content').hammer();
+    card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
+    card.on('panleft panright', dragCard);
+    card.on('panend', dragEnd);
+    
+    var isDragging = false;
+
+    function dragCard(ev) {
+        var elem = ev.target;
+
+        console.log(ev);
+
+        if (!isDragging && !ev.gesture.isFinal) {
+            isdragging = true;
+            console.log("Currently Dragging...");
+            var posX = ev.gesture.deltaX;
+
+            elem.style.left = posX + "px";
+
+            
+        }
+    }
+    function dragEnd(ev) {
+        isDragging = false;
+        ev.target.style.left = "0px";
+        console.log("Dragging Completed.")
+    }
+}
+
+
 
 app.initialize();

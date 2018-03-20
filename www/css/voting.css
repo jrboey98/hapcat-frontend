@@ -191,12 +191,22 @@ h1 {
 }
 .card_content {
     z-index: 8;
-    margin: 13.5vh auto;
-    background: linear-gradient(to bottom right, #EF95FF, #720385);
-    width: 82%;
+    position: relative;
+    margin: 14.25vh auto;
+    background: linear-gradient(to bottom right, #92FFFB, #FFE892);
+    width: 85%;
     height: 75vh;
     border-radius: 25px;
-    overflow-y: scroll;
+    display: flex;
+    flex-flow: column;
+    /*overflow-y: scroll;*/
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    overflow-x: hidden;
+}
+
+.container {
+    flex: 0 1 auto;
 }
 
 .blank_card {
@@ -229,7 +239,7 @@ h1 {
 
 .card_name_photo {
     width: 100%;
-    height: 50%;
+    flex: 0 1 50%;
     position: relative;
     box-shadow: 7px 7px 5px #720385;
     border-radius: 25px;
@@ -254,7 +264,7 @@ h1 {
     width: 70%;
     float: left;
     margin: 5px;
-    border-radius: 20px;
+    border-radius: 25px 1px;
     background-color: #FFF;
     opacity: 0.9;
     color: #000;
@@ -292,7 +302,7 @@ h1 {
 .card_distance_div {
     font-family: 'Raleway', sans-serif;
     margin: 5px;
-    border-radius: 20px;
+    border-radius: 25px 1px;
     background-color: #FFF;
     opacity: 0.9;
     color: #000;
@@ -306,7 +316,7 @@ h1 {
 .card_weather_div {
     font-family: 'Raleway', sans-serif;
     margin: 5px;
-    border-radius: 20px;
+    border-radius: 1px 25px;
     background-color: #FFF;
     opacity: 0.9;
     color: #000;
@@ -336,8 +346,8 @@ h1 {
 }
 
 .card_tag_div {
-    margin: 2vw auto;
-    border-radius: 10px;
+    margin: 3vw auto;
+    border-radius: 15px 1px;
     background-color: #D05754;
     color: #FFF;
     white-space: nowrap;
@@ -360,15 +370,18 @@ h1 {
 }
 
 .card_about {
-    margin-left: 3vw;
-    margin-top: 2vw;
+    width: 94%;
+    margin: 0.5vh auto 0 auto;
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
-    padding: 1vw;
+    padding: 0 1vw 0 1vw;
     float: left;
     box-shadow: 7px 7px 5px #720385;
-    border-radius: 25px;
-    color: #FFF
+    border-radius: 15px 1px;
+    color: #FFF;
+    overflow-y: scroll;
+    flex: 1 1 auto;
+    font-size: 3vw;
 }
 
 .card_description {
@@ -376,10 +389,13 @@ h1 {
     margin: 4vw auto;
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
-    padding: 1vw;
+    padding: 0 1vw 0 1vw;
     box-shadow: 7px 7px 5px #720385;
-    border-radius: 25px;
+    border-radius: 15px 1px;
     color: #FFF;
+    overflow-y: scroll;
+    flex: 1 1 auto;
+    font-size: 3vw;
 }
 
 .card_tag_area {

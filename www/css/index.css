@@ -450,6 +450,7 @@ h1 {
     /*overflow-y: scroll;*/
     animation-name: animatetop;
     animation-duration: 0.4s;
+    overflow-x: hidden;
 }
 
 .container {
