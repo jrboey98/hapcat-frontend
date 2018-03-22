@@ -156,8 +156,8 @@ function hammer() {
     card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
     card.on('panleft panright', dragCard);
     card.on('panend', dragEnd);
-    card.on('swiperight', swipeRight);
-    card.on('swipeleft', swipeLeft);
+    //card.on('swiperight', swipeRight);
+    //card.on('swipeleft', swipeLeft);
 
     
     var isDragging = false;
@@ -167,11 +167,11 @@ function hammer() {
 
     function dragCard(ev) {
         var elem = ev.target;
-        console.log(ev);
-        if (ev.gesture.VelocityX >= 0.5) {
-            swipeRight();
-        } else if (ev.gesture.VelocityX <= -0.5) {
-            swipeLeft();
+        console.log(ev.gesture);
+        if (ev.gesture.velocityX >= 2) {
+            swipeRight(ev);
+        } else if (ev.gesture.velocityX <= -2) {
+            swipeLeft(ev);
         }
 
         if (!isDragging && !ev.gesture.isFinal) {
@@ -182,14 +182,17 @@ function hammer() {
         }
     }
 
-    function swipeRight() {
+    function swipeRight(ev) {
         console.log("Right");
         card.animate({ left: '500px' });
+        parent.removeChild(ev.target);
     }
 
-    function swipeLeft() {
+    function swipeLeft(ev) {
         console.log("Left");
-        card.animate({ right: '500px' });
+        card.animate({ left: '-500px' });
+        parent.removeChild(ev.target);
+        generateCard();
     }
 
     //function offScreen(ev) {
