@@ -52,56 +52,57 @@
     <title>Hapcat</title>
 </head>
 <body onload="onLoad()">
-    <div class="app">
-        <div class="header">
-            <div class="search_div">
-                <input type="text" class="search" placeholder=" Search your area..." />
-            </div>
-            <div class="logo_div">
-                <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
-                <a href="registration.html"><img src="img/logo.svg" class="header_logo" /></a>
-            </div>
-        </div>
-        <div class="content">
-            <div class="welcome_card">
-                <div class="welcome_text_div">
-                    <p id="time_of_day"></p>
-                    <p id="welcome_text"></p>
+    <div id="app" class="app">
+        <div id="main">
+            <div class="header">
+                <div class="search_div">
+                    <input type="text" class="search" placeholder=" Search your area..." />
+                </div>
+                <div class="logo_div">
+                    <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
+                    <a href="voting.html"><img src="img/logo.svg" class="header_logo" /></a>
                 </div>
             </div>
-            <div id="generated_content">
-                <!--cards get generated here-->
-            </div>
-            <button class="content_button">View the next 20 &gt;</button>
-            <div class="floating_action_button">
-                <img class="event_add_button" src="img/plus.svg" />
-            </div>
-        </div>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-4">
-                        <button class="footer_icon_div">
-                            <img src="img/search.svg" class="svg footer_icon" />
+            <div id="content" class="content">
+                <div class="welcome_card">
+                    <div class="welcome_text_div">
+                        <p id="time_of_day"></p>
+                        <p id="welcome_text"></p>
 
-                        </button>
                     </div>
-                    <div class="col-4">
-                        <button class="footer_icon_div">
-                            <img src="img/search.svg" class="svg footer_icon" />
-                        </button>
-                    </div>
-                    <div class="col-4">
-                        <button class="footer_icon_div">
-                            <img src="img/search.svg" class="svg footer_icon" />
-                        </button>
+                </div>
+                <div id="generated_content">
+                    <!--cards get generated here-->
+                </div>
+                <button class="content_button">View the next 20 &gt;</button>
+                <div class="floating_action_button">
+                    <img class="event_add_button" src="img/plus.svg" />
+                </div>
+            </div>
+            <div class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-4">
+                            <button class="footer_icon_div_active">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_div">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button class="footer_icon_div">
+                                <img src="img/search.svg" class="svg footer_icon" />
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div id="node_detail_generation">
-                <!--Node Detail Generated Here-->
-            </div>
+        </div>
+        <div id="node_detail_generation">
+            <!--Node Detail Generated Here-->
         </div>
     </div>
 

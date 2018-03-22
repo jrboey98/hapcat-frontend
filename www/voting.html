@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <!-- bootstrap links for CSS and JS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/voting.css">
+
+
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis|Raleway|Syncopate" rel="stylesheet">
+
+    <!--Places API-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
+
+
+    <title>Hapcat</title>
+</head>
+<body onload="onLoad()">
+    <div class="app">
+        <div class="header">
+            <div class="logo_div">
+
+                <a href="greeting.html"><img src="img/logo.svg" class="header_logo" /></a>
+            </div>
+        </div>
+        <div id="node_detail_generation">
+            <!--cards go here-->
+        </div>
+
+        <div class="card_2 blank_card"></div>
+
+        <div class="card_3 blank_card"></div>
+
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-4">
+                        <button class="footer_icon_div_active">
+                            <!--<div class="svg footer_icon">-->
+                            <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
+                            <img src="img/search.svg" class="svg footer_icon" />
+
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="footer_icon_div">
+                            <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
+                            <img src="img/search.svg" class="svg footer_icon" />
+                        </button>
+                    </div>
+                    <div class="col-4">
+                        <button class="footer_icon_div">
+                            <img src="img/search.svg" class="svg footer_icon" />
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <!--<div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <img src="img/discoverIcon.svg" class="svg footer_icon" />
+                </button>
+            </div>
+            <div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
+                    <img src="img/search.svg" class="svg footer_icon" />
+                </button>
+            </div>
+            <div class="footer_icon_div">
+                <button class="footer_icon_button">
+                    <img src="img/search.svg" class="svg footer_icon" />
+                </button>
+            </div>-->
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="lib/hammerjs/hammer.js"></script>
+    <script type="text/javascript" src="lib/jquery-hammerjs/jquery.hammer.js"></script>
+    <script type="text/javascript" src="js/voting.js"></script>
+</body>
+</html>

@@ -293,6 +293,10 @@ function openNodeDetail(returnedLocation) {
     console.log(messageText);
     console.log(returnedLocation.name);
     constructModal(returnedLocation);
+    $("#main").css("overflow", "hidden");
+    $("#content").css("overflow", "hidden");
+    $("#generated_content").css("overflow", "hidden");
+    $("#app").css("overflow", "hidden");
 }
 
 function constructModal(returnedLocationId) {
