@@ -188,6 +188,7 @@ h1 {
     background: transparent;
     overflow: hidden;
     position: absolute;
+    opacity: 0;
 }
 .card_content {
     z-index: 8;

@@ -141,8 +141,11 @@ function constructCard(returnedLocation) {
     </div>
 </div>
 `;
+    
     document.getElementById("node_detail_generation").innerHTML = cardHTML;
     // Get the card
+   
+    $("#node_detail").animate({ "opacity": 1 });
 }
 
 function getLorem() {
@@ -167,7 +170,6 @@ function hammer() {
 
     function dragCard(ev) {
         var elem = ev.target;
-        console.log(ev.gesture);
         if (ev.gesture.velocityX >= 2) {
             swipeRight(ev);
         } else if (ev.gesture.velocityX <= -2) {
@@ -183,16 +185,19 @@ function hammer() {
     }
 
     function swipeRight(ev) {
+        console.log(ev);
         console.log("Right");
         card.animate({ left: '500px' });
-        parent.removeChild(ev.target);
+        ev.target.parentNode.remove();
+        console.log("Destroyed");
+        init();
     }
 
     function swipeLeft(ev) {
         console.log("Left");
         card.animate({ left: '-500px' });
-        parent.removeChild(ev.target);
-        generateCard();
+        ev.target.parentNode.remove();
+        init();
     }
 
     //function offScreen(ev) {
