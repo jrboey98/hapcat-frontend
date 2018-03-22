@@ -156,47 +156,75 @@ function hammer() {
     card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
     card.on('panleft panright', dragCard);
     card.on('panend', dragEnd);
+    card.on('swiperight', swipeRight);
+    card.on('swipeleft', swipeLeft);
+
     
     var isDragging = false;
-    var delta = 0;
     var posX = 0;
+
+    
 
     function dragCard(ev) {
         var elem = ev.target;
-
         console.log(ev);
+        if (ev.gesture.VelocityX >= 0.5) {
+            swipeRight();
+        } else if (ev.gesture.VelocityX <= -0.5) {
+            swipeLeft();
+        }
 
         if (!isDragging && !ev.gesture.isFinal) {
             isdragging = true;
             console.log("Currently Dragging...");
             posX = ev.gesture.deltaX;
-
             elem.style.left = posX + "px";
-
-            delta = ev.gesture.deltaX;
         }
     }
 
-    function offScreen(ev) {
-        var id = setInterval(frame, 20);
-        function frame() {
-            if (posX == 0) {
-                clearInterval(id);
-            } else {
-                posX++;
-                ev.target.style.left = posX + "px";
-            }
-        }
+    function swipeRight() {
+        console.log("Right");
+        card.animate({ left: '500px' });
     }
+
+    function swipeLeft() {
+        console.log("Left");
+        card.animate({ right: '500px' });
+    }
+
+    //function offScreen(ev) {
+    //    console.log("Offscreen called")
+    //    var id = setInterval(frame, 1);
+    //    var elem = ev.target
+    //    var parent = elem.parentElement;
+    //    function frame() {
+    //        if (posX > 400 || posX < -400) {
+    //            clearInterval(id);
+    //            console.log("Entered removal");
+    //            parent.removeChild(ev.target);
+    //            card.off('panleft panright', dragCard);
+    //            card.off('panend', dragEnd);
+               
+    //        } else if (posX >= 150) {
+    //            console.log("Entered right move");
+    //            posX += 2;
+    //            ev.target.style.left = posX + "px";
+    //        } else if (posX <= -150) {
+    //            console.log("Entered left move");
+    //            posX -= 2;
+    //            ev.target.style.left = posX + "px";
+    //        } 
+    //    }
+    //}
     function dragEnd(ev) {
         isDragging = false;
-        ev.target.style.left = "0px";
         console.log("Dragging Completed.")
-        if (delta >= 150) {
-            offScreen(ev);
-            ev.target.destroy;
-        }
-        delta = 0;
+        console.log("dragEnd posX: " + posX);
+        //if (posX >= 150 || posX <= -150) {
+        //    offScreen(ev);
+        //}
+        ev.target.style.left = "0px";
+        posX = 0;
     }
 }
 
