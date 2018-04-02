@@ -299,6 +299,17 @@ function openNodeDetail(returnedLocation) {
     $("#app").css("overflow", "hidden");
 }
 
+function closeNodeDetail() {
+    var modal = document.getElementById('nodeDetail');
+    modal.style.display = "none";
+    var messageText = "Closing node detail";
+    console.log(messageText);
+    $("#main").css("overflow", "scroll");
+    $("#content").css("overflow", "scroll");
+    $("#generated_content").css("overflow", "scroll");
+    $("#app").css("overflow", "scroll");
+}
+
 function constructModal(returnedLocationId) {
     var returnedLocation = getPlace(returnedLocationId);
     var columnSplit = 4;
@@ -355,21 +366,81 @@ function constructModal(returnedLocationId) {
     // Get the modal
     var modal = document.getElementById('nodeDetail');
     modal.style.display = "block";
+    hammer();
 }
 
-//Modal 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+function hammer() {
+    var card = $('.modal_content').hammer();
+    console.log(card);
+    card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
+    card.on('panleft panright', dragCard);
+    card.on('panend', dragEnd);
+    //card.on('swiperight', swipeRight);
+    //card.on('swipeleft', swipeLeft);
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
+    console.log("Hammer called")
+    var isDragging = false;
+    var posX = 0;
+
+
+
+    function dragCard(ev) {
+        var elem = ev.target;
+        console.log("DragCard entered");
+        if (ev.gesture.velocityX >= 2 && ev.gesture.deltaX > 50) {
+            swipeRight(ev);
+        } else if (ev.gesture.velocityX <= -2 && ev.gesture.deltaX < 50) {
+            swipeLeft(ev);
+        }
+
+        if (!isDragging && !ev.gesture.isFinal) {
+            isdragging = true;
+            console.log("Currently Dragging...");
+            posX = ev.gesture.deltaX;
+            elem.style.left = posX + "px";
+        }
+    }
+
+    function swipeRight(ev) {
+        if (posX >= 200) {
+            console.log("Right");
+            card.animate({ left: '500px' },
+                {
+                    complete: function () {
+                        closeNodeDetail();
+                    }
+                });
+        }
+    }
+
+    function swipeLeft(ev) {
+        if (posX <= -200) {
+            console.log("Left");
+            card.animate({ left: '-500px' },
+                {
+                    complete: function () {
+                        closeNodeDetail();
+                    }
+                });
+        }
+    }
+
+    function dragEnd(ev) {
+        isDragging = false;
+        console.log("Dragging Completed.")
+        console.log("dragEnd posX: " + posX);
+        //if (posX >= 150 || posX <= -150) {
+        //    offScreen(ev);
+        //}
+        ev.target.style.left = "0px";
+        posX = 0;
+    }
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+    if (event.target == $("#nodeDetail")) {
+        $("#nodeDetail").style.display = "none";
     }
 }
 

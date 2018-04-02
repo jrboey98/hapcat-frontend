@@ -48,6 +48,7 @@ body {
     height: 100%; /* text area height */
     width: 100%; /* text area width */
     text-align: center;
+    overflow: hidden;
 }
 
 /*Landscape layout (with min-width)*/
@@ -224,6 +225,7 @@ h1 {
     height: 75vh;
     border-radius: 23px;
     background-color: #7D3988;
+    opacity: 0;
 }
 
 .card_3 {
@@ -234,6 +236,7 @@ h1 {
     height: 75vh;
     border-radius: 21px;
     background-color: #720385;
+    opacity: 0;
 }
 
 

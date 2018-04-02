@@ -72,8 +72,19 @@ function init() {
         // Parse JSON string into object
         parsed = JSON.parse(response);
         constructCard(parsed[0]);
+        constructStackCards();
         hammer();
     });
+}
+
+function constructStackCards() {
+    var html =`<div id="card_2" class="card_2 blank_card"></div>
+        <div id="card_3" class="card_3 blank_card"></div>`
+
+    document.getElementById("stack_cards").innerHTML = html;
+    $("#card_2").animate({ "opacity": 1 });
+    $("#card_3").animate({ "opacity": 1 });
+
 }
 
 function generateTag(iteration, returnedLocation, colors, columnSplit, use) {
@@ -170,9 +181,9 @@ function hammer() {
 
     function dragCard(ev) {
         var elem = ev.target;
-        if (ev.gesture.velocityX >= 2) {
+        if (ev.gesture.velocityX >= 2 && ev.gesture.deltaX > 50) {
             swipeRight(ev);
-        } else if (ev.gesture.velocityX <= -2) {
+        } else if (ev.gesture.velocityX <= -2 && ev.gesture.deltaX < 50) {
             swipeLeft(ev);
         }
 
@@ -185,19 +196,29 @@ function hammer() {
     }
 
     function swipeRight(ev) {
-        console.log(ev);
-        console.log("Right");
-        card.animate({ left: '500px' });
-        ev.target.parentNode.remove();
-        console.log("Destroyed");
-        init();
+        if (posX >= 200) {
+            console.log("Right");
+            card.animate({ left: '500px' },
+                {
+                    complete: function () {
+                        ev.target.parentNode.remove();
+                    }
+                });
+            transition();
+        }
     }
 
     function swipeLeft(ev) {
-        console.log("Left");
-        card.animate({ left: '-500px' });
-        ev.target.parentNode.remove();
-        init();
+        if (posX <= -200) {
+            console.log("Left");
+            card.animate({ left: '-500px' },
+                {
+                    complete: function () {
+                        ev.target.parentNode.remove();
+                    }
+                });
+            transition();
+        }
     }
 
     //function offScreen(ev) {
@@ -235,6 +256,21 @@ function hammer() {
         posX = 0;
     }
 }
+
+function transition() {
+    $("#card_2").id = "card_2_animated";
+    $("#card_2_animated").animate({
+        "z-index": 8,
+        "position": "relative",
+        "width": "85%",
+        "height": "75vh",
+        "border-radius": "75px",
+        
+    });
+    init();
+}
+
+
 
 
 
