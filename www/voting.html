@@ -30,6 +30,8 @@
     <!-- bootstrap links for CSS and JS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <!-- EvilIcons -->
+    <link rel="stylesheet" type="text/css" href="lib/evil-icons/evil-icons.min.css" />
 
     <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
     <meta name="format-detection" content="telephone=no">
@@ -42,6 +44,8 @@
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Dosis|Raleway|Syncopate" rel="stylesheet">
 
+
+
     <!--Places API-->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
 
@@ -53,7 +57,7 @@
         <div class="header">
             <div class="logo_div">
 
-                <a href="greeting.html"><img src="img/logo.svg" class="header_logo" /></a>
+                <a href="index.html"><img src="img/logo.svg" class="header_logo" /></a>
             </div>
         </div>
         <div id="node_detail_generation">
@@ -68,54 +72,36 @@
             <div class="container">
                 <div class="row">
                     <div class="col-4">
-                        <button class="footer_icon_div_active">
-                            <!--<div class="svg footer_icon">-->
-                            <!--<p><span class="glyphicon glyphicon-chevron-left"></span></p>-->
-                            <img src="img/search.svg" class="svg footer_icon" />
-
-                        </button>
+                        <div class="footer_icon_div" id="discover">
+                            <a href="index.html">
+                                <div data-icon="ei-location" class="icon footer_icon"></div>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-4">
-                        <button class="footer_icon_div">
-                            <!-- <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>-->
-                            <img src="img/search.svg" class="svg footer_icon" />
-                        </button>
+                        <div class="active_div footer_icon_div" id="voting">
+                            <a href="voting.html">
+                                <div data-icon="ei-check" class="active icon footer_icon"></div>
+                            </a>
+                        </div>
                     </div>
                     <div class="col-4">
-                        <button class="footer_icon_div">
-                            <img src="img/search.svg" class="svg footer_icon" />
-                        </button>
+                        <div class="footer_icon_div" id="profile">
+                            <a href="profile.html">
+                                <div data-icon="ei-user" class="icon footer_icon"></div>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
-
-
-            <!--<div class="footer_icon_div">
-                <button class="footer_icon_button">
-                    <img src="img/discoverIcon.svg" class="svg footer_icon" />
-                </button>
-            </div>
-            <div class="footer_icon_div">
-                <button class="footer_icon_button">
-                    <p class="svg footer_icon"><span class="glyphicon glyphicon-chevron-left"></span><span class="glyphicon glyphicon-chevron-right"></span></p>
-                    <img src="img/search.svg" class="svg footer_icon" />
-                </button>
-            </div>
-            <div class="footer_icon_div">
-                <button class="footer_icon_button">
-                    <img src="img/search.svg" class="svg footer_icon" />
-                </button>
-            </div>-->
         </div>
     </div>
-
 
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/hammerjs/hammer.js"></script>
     <script type="text/javascript" src="lib/jquery-hammerjs/jquery.hammer.js"></script>
     <script type="text/javascript" src="js/voting.js"></script>
+    <script type="text/javascript" src="lib/evil-icons/evil-icons.js"></script>
+
 </body>
 </html>

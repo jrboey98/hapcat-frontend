@@ -64,7 +64,7 @@
                 </div>
                 <div class="logo_div">
                     <!--<object id="heading_logo" type="application/xhtml+xml" data="img/logo.svg"></object>-->
-                    <a href="voting.html"><img src="img/logo.svg" class="header_logo" /></a>
+                    <a href="index.html"><img src="img/logo.svg" class="header_logo" /></a>
                 </div>
             </div>
             <div id="content" class="content">
@@ -87,19 +87,25 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-4">
-                            <button class="footer_icon_div" active>
-                                <img src="lib/evil-icons/icons/ei-location.svg" class="icon footer_icon" />
-                            </button>
+                            <div class="active_div footer_icon_div" id="discover">
+                                <a href="index.html">
+                                    <div data-icon="ei-location" class="active icon footer_icon"></div>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-4">
-                            <button class="footer_icon_div" >
-                                <img src="lib/evil-icons/icons/ei-check.svg" class="icon footer_icon" />
-                            </button>
+                            <div class="footer_icon_div" id="voting">
+                                <a href="voting.html">
+                                    <div data-icon="ei-check" class="icon footer_icon"></div>
+                                </a>
+                            </div>
                         </div>
                         <div class="col-4">
-                            <button class="footer_icon_div">
-                                <img src="lib/evil-icons/icons/ei-user.svg" class="icon footer_icon" />
-                            </button>
+                            <div class="footer_icon_div" id="profile">
+                                <a href="profile.html">
+                                    <div data-icon="ei-user" class="icon footer_icon"></div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -114,6 +120,7 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/hammerjs/hammer.js"></script>
     <script type="text/javascript" src="lib/jquery-hammerjs/jquery.hammer.js"></script>
+    <script type="text/javascript" src="lib/evil-icons/evil-icons.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

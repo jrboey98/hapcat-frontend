@@ -135,7 +135,7 @@ h1 {
 
 .footer {
     width: 100%;
-    height: 8vh;
+    height: 7vh;
     background: linear-gradient(to bottom, transparent, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D, #510B5D);
     position: fixed;
     bottom: 0;
@@ -190,14 +190,16 @@ h1 {
     overflow: hidden;
     position: absolute;
     opacity: 0;
+    top: 7vh;
+    bottom: 7vh;
 }
 .card_content {
     z-index: 8;
     position: relative;
-    margin: 14.25vh auto;
+    margin: 7.25vh auto 2vh auto;
     background: linear-gradient(to bottom right, #92FFFB, #FFE892);
     width: 85%;
-    height: 75vh;
+    height: 80vh;
     border-radius: 25px;
     display: flex;
     flex-flow: column;
@@ -423,4 +425,18 @@ h1 {
 
 .lato {
     font-family: 'Lato', sans-serif;
+}
+
+/*Icons*/
+.icon {
+    fill: #FFF;
+    width: auto;
+}
+
+.active svg {
+    fill: #D0B554;
+}
+
+.active_div {
+    background: linear-gradient(to bottom, transparent, transparent, rgba(0,0,0,0.3));
 }
