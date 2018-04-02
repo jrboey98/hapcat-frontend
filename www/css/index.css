@@ -348,8 +348,8 @@ h1 {
     width: 100%;
 }
 
-.footer_icon_div.footer_icon:active {
-    background-color: transparent;
+.footer_icon_div:active {
+    background-color: rgba(0,0,0,0.3);
     border: none;
     width: 100%;
 }
@@ -715,4 +715,10 @@ textarea:focus, input:focus {
 .forgotpass {
 
     padding: 15px;
+}
+
+/*Icons*/
+.icon {
+    fill: #FFF;
+    width: auto;
 }
