@@ -27,27 +27,44 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <!-- bootstrap links for CSS and JS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- Begin basic common stuff: -->
+
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'self' data: gap: https://ssl.gstatic.com https://maps.googleapis.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src *;">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.css" />
 
     <!-- EvilIcons -->
-    <link rel="stylesheet" type="text/css" href="lib/evil-icons/evil-icons.min.css" />
+    <link rel="stylesheet" type="text/css" href="lib/evil-icons/evil-icons.css" />
+    <script type="text/javascript" src="lib/evil-icons/evil-icons.js"></script>
 
-    <!--<meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">-->
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
-    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/voting.css">
+    <!-- JQuery -->
+    <script src="lib/jquery/jquery.js"></script>
 
+    <!-- Fonts -->
+    <link rel="stylesheet" type="text/css" href="css/typefaces.css" />
 
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Dosis|Raleway|Syncopate" rel="stylesheet">
+    <!-- Cordova -->
+    <script type="text/javascript" src="cordova.js"></script>
 
+    <!-- Hammer.JS and JQuery integration -->
+    <script type="text/javascript" src="lib/hammerjs/hammer.js"></script>
+    <script type="text/javascript" src="lib/jquery-hammerjs/jquery.hammer.js"></script>
 
+    <!-- .shrug -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
-    <!--Places API-->
+    <!-- Places API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDRJDCYVpBeazrS8T4mxGWn8t2V5QNBrvA&libraries=places"></script>
+
+    <!-- End basic common stuff! -->
+
+    <!-- This page stuff -->
+    <link rel="stylesheet" type="text/css" href="css/voting.css" />
+    <script type="text/javascript" src="js/voting.js"></script>
 
 
     <title>Hapcat</title>
@@ -96,12 +113,5 @@
             </div>
         </div>
     </div>
-
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="lib/hammerjs/hammer.js"></script>
-    <script type="text/javascript" src="lib/jquery-hammerjs/jquery.hammer.js"></script>
-    <script type="text/javascript" src="js/voting.js"></script>
-    <script type="text/javascript" src="lib/evil-icons/evil-icons.js"></script>
-
 </body>
 </html>
