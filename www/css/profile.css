@@ -30,7 +30,6 @@ body {
     -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
     -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
-    background: linear-gradient(to bottom right, #92FFFB, #FFE892);
     background-attachment: fixed;
     font-size: 12px;
     height: 100%;
@@ -47,6 +46,7 @@ body {
     height: 100%; /* text area height */
     width: 100%; /* text area width */
     text-align: center;
+    background: linear-gradient(to bottom right, #92FFFB, #FFE892);
 }
 
 /*Landscape layout (with min-width)*/
@@ -184,6 +184,7 @@ h1 {
     margin-top: 10px;
     background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
     border-color: #510B5D;
+    border-width: 1px;
     font-size: 5vw;
     color: #FFF;
     box-shadow: 7px 7px 5px #888888;

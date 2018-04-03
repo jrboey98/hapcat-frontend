@@ -387,9 +387,9 @@ function hammer() {
     function dragCard(ev) {
         var elem = ev.target;
         console.log("DragCard entered");
-        if (ev.gesture.velocityX >= 2 && ev.gesture.deltaX > 50) {
+        if (ev.gesture.velocityX >= 1 && ev.gesture.deltaX > 50) {
             swipeRight(ev);
-        } else if (ev.gesture.velocityX <= -2 && ev.gesture.deltaX < 50) {
+        } else if (ev.gesture.velocityX <= -1 && ev.gesture.deltaX < 50) {
             swipeLeft(ev);
         }
 

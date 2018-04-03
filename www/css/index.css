@@ -322,6 +322,7 @@ h1 {
     background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
     border-color: #510B5D;
     border-radius: 0 0 5vh 5vh;
+    border-width: 1px;
     font-size: 5vw;
     color: #FFF;
     box-shadow: 7px 7px 5px #888888;
