@@ -97,6 +97,7 @@ function changeWelcomeText() {
 // parameter when you first load the API. For example:
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
+var data;
 var map;
 var infowindow;
 var newplace = 'university';
@@ -196,7 +197,7 @@ function createMarker(place) {
 function getResults(callback) {
     var xobj = new XMLHttpRequest();
     xobj.overrideMimeType("application/json");
-    xobj.open('GET', 'test-data/sample-data.json', true); // Replace 'my_data' with the path to your file
+    xobj.open('GET', 'test-data/test-suggestions.json', true);
     xobj.onreadystatechange = function () {
         if (xobj.readyState == 4 && xobj.status == "200") {
             // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -207,27 +208,41 @@ function getResults(callback) {
 }
 
 function init() {
-    getResults(function (response) {
-        // Parse JSON string into object
-        parsed = JSON.parse(response);
-        generateCards(parsed);
+    //--------------For local data testing purposes---------------
+    //getResults(function (response) {
+    //    // Parse JSON string into object
+    //    parsed = JSON.parse(response);
+    //    data = parsed;
+    //    generateCards();
+    //});
+    $.getJSON('http://hapcat.tenaisenma.com:8080/api/v0/suggestions', function (response) {
+        data = response;
+        generateCards();
     });
 }
 
-function generateTag(iteration, returnedLocation, colors, columnSplit, use) {
+function generateTag(iteration, tag, colors, columnSplit, use) {
     var random = Math.floor((Math.random() * colors.length));
     var tag_color = colors[random];
     colors.splice(random, 1);
-    return `
+    if (tag) {
+        return `
 <div class="${use}_tag_column_div col-${columnSplit}">
     <div class="${use}_tag_div" style="background-color: ${tag_color};">
-        <p class="${use}_tag_text">${returnedLocation.types[iteration]}</p>
+        <p class="${use}_tag_text">${tag.name}</p>
     </div>
 </div>
 `;
+    }
+    else {
+        return `
+<div class="${use}_tag_column_div col-${columnSplit}">
+</div>
+`;
+    }
 }
 
-function generateCard(returnedLocation) {
+function generateCard(nodeSection, nodeId) {
     var columnSplit = 3;
     var use = "content";
     var colors = [
@@ -236,22 +251,28 @@ function generateCard(returnedLocation) {
         "#D05754",
         "#337E7B"
     ]
+    var node = data[nodeSection][nodeId];
+    var numTags = node['tags'].length;
+    var numShownTags = Math.min(3, numTags);
     var tags = "";
-    for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
+    for (var i = 0; i < numShownTags; i++) {
+        tags += generateTag(i, data['tags'][node['tags'][i]], colors, columnSplit, use);
+    }
+    for (var i = numShownTags; i < 3; i++) {
+        tags += generateTag(i, "", colors, columnSplit, use);
     }
     const contentCard = `
-<div class="content_card" onClick="openNodeDetail('${returnedLocation.placeId}')">
+<div class="content_card" onClick="openNodeDetail('${nodeId}', '${nodeSection}')">
     <div class="content_name_photo">
         <div class="content_photo_div">
             <div class="content_name_div">
-                <h4 class="content_name">${returnedLocation.name}</h4>
+                <h4 class="content_name">${data[nodeSection][nodeId].name}</h4>
                 <p class="content_datetime">Open Today from 4:00pm to 9:30pm</p>
             </div>
             <div class="content_distance_div">
                 <h4 class="content_distance">2.6mi</h4>
             </div>
-            <img src="${returnedLocation.photo}" class="content_photo" />
+            <img src="${data[nodeSection][nodeId].photos[0]}" class="content_photo" />
         </div>
     </div>
     <div class="container">
@@ -275,12 +296,13 @@ function getPlace(placeId) {
     }
 }
 
-function generateCards(parsed) {
+function generateCards() {
     //var returnedLocation = new Array();
     var generatedContent = "";
-    for (var key in parsed) {
+    for (var i in data['order']) {
         //returnedLocation.push = sampleData[key];
-        generatedContent += generateCard(parsed[key]);
+        var node = data['order'][i];
+        generatedContent += generateCard(node['section'], node['id']);
     }
     //for (var i = 0; i < 20; i++){
     //    generatedContent += generateCard(returnedLocation);
@@ -288,11 +310,11 @@ function generateCards(parsed) {
     document.getElementById("generated_content").innerHTML = generatedContent;
 }
 
-function openNodeDetail(returnedLocation) {
-    var messageText = "Opening node detail for " + returnedLocation.name;
+function openNodeDetail(nodeId, nodeSection) {
+    var messageText = "Opening node detail for " + data[nodeSection][nodeId].name;
     console.log(messageText);
-    console.log(returnedLocation.name);
-    constructModal(returnedLocation);
+    console.log(data[nodeSection][nodeId].name);
+    constructModal(nodeId, nodeSection);
     $("#main").css("overflow", "hidden");
     $("#content").css("overflow", "hidden");
     $("#generated_content").css("overflow", "hidden");
@@ -310,8 +332,8 @@ function closeNodeDetail() {
     $("#app").css("overflow", "scroll");
 }
 
-function constructModal(returnedLocationId) {
-    var returnedLocation = getPlace(returnedLocationId);
+function constructModal(nodeId, nodeSection) {
+    var returnedLocation = getPlace(data[nodeSection][nodeId]);
     var columnSplit = 4;
     var use = "modal";
     var lorem = getLorem();
@@ -322,8 +344,21 @@ function constructModal(returnedLocationId) {
         "#337E7B"
     ]
     var tags = "";
-    for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
+    var node = data[nodeSection][nodeId];
+    var numTags = node['tags'].length;
+    var numShownTags = Math.min(3, numTags);
+    var tags = "";
+    for (var i = 0; i < numShownTags; i++) {
+        tags += generateTag(i, data['tags'][node['tags'][i]], colors, columnSplit, use);
+    }
+    for (var i = numShownTags; i < 3; i++) {
+        tags += generateTag(i, "", colors, columnSplit, use);
+    }
+    var location;
+    if (data[nodeSection] == 'event') {
+        location = data[nodeSection][nodeId][location];
+    } else {
+        location = data[nodeSection][nodeId];
     }
     const modalHTML = `
 <div id="nodeDetail" class="modal">
@@ -331,7 +366,7 @@ function constructModal(returnedLocationId) {
         <div class="modal_name_photo">
             <div class="modal_photo_div">
                 <div class="modal_name_div">
-                    <h4 class="modal_name">${returnedLocation.name}</h4>
+                    <h4 class="modal_name">${data[nodeSection][nodeId].name}</h4>
                     <p class="modal_paragraph">Open Today from 4:00pm to 9:30pm</p>
                 </div>
                 <div class="modal_weather_div">
@@ -341,7 +376,7 @@ function constructModal(returnedLocationId) {
                 <div class="modal_distance_div">
                     <h4 class="modal_distance">2.6mi</h4>
                 </div>
-                <img src="${returnedLocation.photo}" class="modal_photo" />
+                <img src="${data[nodeSection][nodeId].photos[0]}" class="modal_photo" />
             </div>
         </div>
         <div class="container">
@@ -350,7 +385,7 @@ function constructModal(returnedLocationId) {
             </div>
         </div>
         <div class="modal_about">
-            <p class="lato modal_paragraph">${returnedLocation.address}</p>
+            <p class="lato modal_paragraph">${location.address}</p>
             <p class="lato modal_paragraph">1741 Likes</p>
             <p class="lato modal_paragraph">24 Dislikes</p>
             <p class="lato modal_paragraph">Liked by you</p>
@@ -389,7 +424,7 @@ function hammer() {
         console.log("DragCard entered");
         if (ev.gesture.velocityX >= 1 && ev.gesture.deltaX > 50) {
             swipeRight(ev);
-        } else if (ev.gesture.velocityX <= -1 && ev.gesture.deltaX < 50) {
+        } else if (ev.gesture.velocityX <= -1 && ev.gesture.deltaX < -50) {
             swipeLeft(ev);
         }
 
