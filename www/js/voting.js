@@ -51,7 +51,7 @@ function onResume() {
 }
 
 function onLoad() {
-    init();
+    getData();
 }
 
 function getResults(callback) {
@@ -67,14 +67,36 @@ function getResults(callback) {
     xobj.send(null);
 }
 
-function init() {
-    getResults(function (response) {
-        // Parse JSON string into object
-        parsed = JSON.parse(response);
-        constructCard(parsed[0]);
-        constructStackCards();
-        hammer();
+var data;
+var tempNumber = 0;
+
+function getData() {
+    $.getJSON('http://hapcat.tenaisenma.com:8080/api/v0/suggestions', function (response) {
+        data = response;
+        init();
     });
+}
+
+function init() {
+    //--------------For local data testing purposes---------------
+    //getResults(function (response) {
+    //    // Parse JSON string into object
+    //    parsed = JSON.parse(response);
+    //    data = parsed;
+    //    var node = data['order'][0];
+    //    constructCard(node['section'], node['id']);
+    //    constructStackCards();
+    //    hammer();
+    //});
+    
+    if (tempNumber % 19 == 0) {
+        tempNumber = 0;
+    }
+    var node = data['order'][tempNumber];
+    constructCard(node['section'], node['id']);
+    constructStackCards()
+    hammer();
+    tempNumber++;
 }
 
 function constructStackCards() {
@@ -87,21 +109,28 @@ function constructStackCards() {
 
 }
 
-function generateTag(iteration, returnedLocation, colors, columnSplit, use) {
+function generateTag(iteration, tag, colors, columnSplit, use) {
     var random = Math.floor((Math.random() * colors.length));
     var tag_color = colors[random];
     colors.splice(random, 1);
-    return `
+    if (tag) {
+        return `
 <div class="${use}_tag_column_div col-${columnSplit}">
     <div class="${use}_tag_div" style="background-color: ${tag_color};">
-        <p class="${use}_tag_text">${returnedLocation.types[iteration]}</p>
+        <p class="${use}_tag_text">${tag.name}</p>
     </div>
 </div>
 `;
 }
+    else {
+    return `
+<div class="${use}_tag_column_div col-${columnSplit}">
+</div>
+`;
+    }
+}
 
-function constructCard(returnedLocation) {
-    console.log(returnedLocation);
+function constructCard(nodeSection, nodeId) {
     var columnSplit = 4;
     var use = "card";
     var lorem = getLorem();
@@ -112,8 +141,21 @@ function constructCard(returnedLocation) {
         "#337E7B"
     ]
     var tags = "";
-    for (var i = 0; i < 3; i++) {
-        tags += generateTag(i, returnedLocation, colors, columnSplit, use);
+    var node = data[nodeSection][nodeId];
+    var numTags = node['tags'].length;
+    var numShownTags = Math.min(3, numTags);
+    var tags = "";
+    for (var i = 0; i < numShownTags; i++) {
+        tags += generateTag(i, data['tags'][node['tags'][i]], colors, columnSplit, use);
+    }
+    for (var i = numShownTags; i < 3; i++) {
+        tags += generateTag(i, "", colors, columnSplit, use);
+    }
+    var location;
+    if (data[nodeSection] == 'event') {
+        location = data[nodeSection][nodeId][location];
+    } else {
+        location = data[nodeSection][nodeId];
     }
     const cardHTML = `
 <div id="node_detail" class="card">
@@ -121,7 +163,7 @@ function constructCard(returnedLocation) {
         <div class="card_name_photo">
             <div class="card_photo_div">
                 <div class="card_name_div">
-                    <h4 class="card_name">${returnedLocation.name}</h4>
+                    <h4 class="card_name">${data[nodeSection][nodeId].name}</h4>
                     <p class="card_paragraph">You were here Last Saturday from 2:13PM to 7:36PM</p>
                 </div>
                 <div class="card_weather_div">
@@ -131,7 +173,7 @@ function constructCard(returnedLocation) {
                 <div class="card_distance_div">
                     <h4 class="card_distance">2.6mi</h4>
                 </div>
-                <img src="${returnedLocation.photo}" class="card_photo" />
+                <img src="${data[nodeSection][nodeId].photos[0]}" class="card_photo" />
             </div>
         </div>
         <div class="container">
@@ -140,7 +182,7 @@ function constructCard(returnedLocation) {
             </div>
         </div>
         <div class="card_about">
-            <p class="lato card_paragraph">${returnedLocation.address}</p>
+            <p class="lato card_paragraph">${location.address}</p>
             <p class="lato card_paragraph">1741 Likes</p>
             <p class="lato card_paragraph">24 Dislikes</p>
             <p class="lato card_paragraph">Liked by you</p>
