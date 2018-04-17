@@ -103,7 +103,7 @@ function constructStackCards() {
     var html =`<div id="card_2" class="card_2 blank_card"></div>
         <div id="card_3" class="card_3 blank_card"></div>`
 
-    document.getElementById("stack_cards").innerHTML = html;
+    document.getElementById("node_detail_generation").innerHTML += html;
     $("#card_2").animate({ "opacity": 1 });
     $("#card_3").animate({ "opacity": 1 });
 
@@ -198,7 +198,7 @@ function constructCard(nodeSection, nodeId) {
     document.getElementById("node_detail_generation").innerHTML = cardHTML;
     // Get the card
    
-    $("#node_detail").animate({ "opacity": 1 });
+    //$("#node_detail").animate({ "opacity": 1 });
 }
 
 function getLorem() {
@@ -212,6 +212,7 @@ function hammer() {
     card.add(new Hammer.Pan({ direction: Hammer.DIRECTION_HORIZONTAL, threshold: 10 }));
     card.on('panleft panright', dragCard);
     card.on('panend', dragEnd);
+    var isSwiped = false;
     //card.on('swiperight', swipeRight);
     //card.on('swipeleft', swipeLeft);
 
@@ -238,28 +239,30 @@ function hammer() {
     }
 
     function swipeRight(ev) {
-        if (posX >= 200) {
+        if (!isSwiped && posX >= 200) {
+            isSwiped = true;
             console.log("Right");
             card.animate({ left: '500px' },
                 {
                     complete: function () {
                         ev.target.parentNode.remove();
+                        transition();
                     }
                 });
-            transition();
         }
     }
 
     function swipeLeft(ev) {
-        if (posX <= -200) {
+        if (!isSwiped && posX <= -200) {
+            isSwiped = true;
             console.log("Left");
             card.animate({ left: '-500px' },
                 {
                     complete: function () {
                         ev.target.parentNode.remove();
+                        transition();
                     }
                 });
-            transition();
         }
     }
 
@@ -300,18 +303,21 @@ function hammer() {
 }
 
 function transition() {
-    $("#card_2").id = "card_2_animated";
+    console.log("transition");
+    document.getElementById("card_2").id = "card_2_animated";
     $("#card_2_animated").animate({
         "z-index": 8,
         "position": "relative",
         "width": "85%",
-        "height": "75vh",
-        "border-radius": "75px",
-        
+        "border-radius": "25px",
+        "height": "80vh",
+        "margin": "7.25vh auto 2vh auto",
+        "background": "linear-gradient(to bottom right, #92FFFB, #FFE892)"},
+        function() {
+            console.log("async called")
+            init();
     });
-    init();
 }
-
 
 
 

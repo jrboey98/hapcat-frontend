@@ -48,7 +48,7 @@ body {
     width: 100%; /* text area width */
     text-align: center;
     overflow: hidden;
-    background: linear-gradient(to right, #D05754, lightgrey, lightgrey, lightgrey,lightgrey,lightgrey,lightgrey,lightgrey,lightgrey, #337E7B);
+    background: linear-gradient(to right, #D05754, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey, lightgrey,lightgrey,lightgrey,lightgrey,lightgrey,lightgrey, #337E7B);
 }
 
 /*Landscape layout (with min-width)*/
@@ -189,7 +189,7 @@ h1 {
     background: transparent;
     overflow: hidden;
     position: absolute;
-    opacity: 0;
+    /*opacity: 0;*/
     top: 7vh;
     bottom: 7vh;
 }
@@ -440,3 +440,26 @@ h1 {
 .active_div {
     background: linear-gradient(to bottom, transparent, transparent, rgba(0,0,0,0.3));
 }
+
+.good {
+    transform: rotate(90deg);
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    bottom: 50%;
+    color: #FFF;
+    font-size: 3.0em;
+    padding: 0;
+}
+
+.bad {
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -50px;
+    top: 50%;
+    bottom: 50%;
+    color: #FFF;
+    font-size: 3.0em;
+    padding: 0;
+}
+
