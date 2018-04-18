@@ -226,8 +226,9 @@ h1 {
     width: 75%;
     height: 75vh;
     border-radius: 23px;
-    background-color: #7D3988;
-    opacity: 0;
+    background: #7D3988;
+    /*opacity: 0;*/
+    transition: background-color 0.5s ease;
 }
 
 .card_3 {
@@ -237,17 +238,35 @@ h1 {
     width: 68%;
     height: 75vh;
     border-radius: 21px;
-    background-color: #720385;
-    opacity: 0;
+    background: #720385;
+    /*opacity: 0;*/
+    transition: background-color 0.5s ease;
 }
 
+.card_4 {
+    z-index: 5;
+    opacity: 0;
+    margin: 7.5vh auto;
+    width: 61%;
+    height: 75vh;
+    border-radius: 19px;
+    background: #720385;
+}
 
+.card_2_animate {
+    background: #c3e0b8;
+    /*background-color: #FFF;*/
+}
+
+.card_3_animate {
+    background: #7D3988;
+}
 
 .card_name_photo {
     width: 100%;
     flex: 0 1 50%;
     position: relative;
-    box-shadow: 7px 7px 5px #720385;
+    box-shadow: 7px 7px 5px #888888;
     border-radius: 25px;
 }
 
@@ -361,7 +380,7 @@ h1 {
     display: block;
     overflow: hidden;
     width: 90%;
-    box-shadow: 7px 7px 5px #720385;
+    box-shadow: 7px 7px 5px #888888;
 }
 
 .card_tag_text {
@@ -382,7 +401,7 @@ h1 {
     display: inline-block;
     padding: 0 1vw 0 1vw;
     float: left;
-    box-shadow: 7px 7px 5px #720385;
+    box-shadow: 7px 7px 5px #888888;
     border-radius: 15px 1px;
     color: #FFF;
     overflow-y: scroll;
@@ -396,7 +415,7 @@ h1 {
     background-color: rgba(0,0,0,0.2);
     display: inline-block;
     padding: 0 1vw 0 1vw;
-    box-shadow: 7px 7px 5px #720385;
+    box-shadow: 7px 7px 5px #888888;
     border-radius: 15px 1px;
     color: #FFF;
     overflow-y: scroll;
@@ -406,7 +425,7 @@ h1 {
 
 .card_tag_area {
     margin: 10vw;
-    box-shadow: 7px 7px 5px #720385;
+    box-shadow: 7px 7px 5px #888888;
 }
 
 /*Fonts*/

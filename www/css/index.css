@@ -319,8 +319,8 @@ h1 {
     width: 95%;
     height: 10vh;
     margin-top: 10px;
-    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
-    border-color: #510B5D;
+    background-color: #510B5D;
+    border-color: #D0B554;
     border-radius: 0 0 5vh 5vh;
     border-width: 1px;
     font-size: 5vw;

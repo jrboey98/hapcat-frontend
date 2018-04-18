@@ -182,9 +182,9 @@ h1 {
     width: 95%;
     height: 6vh;
     margin-top: 10px;
-    background: linear-gradient(to bottom right, #FFE892, #D0B554, #CB9F00 );
-    border-color: #510B5D;
-    border-width: 1px;
+    background-color: #510B5D;
+    border-color: #D0B554;
+    border-width: 2px;
     font-size: 5vw;
     color: #FFF;
     box-shadow: 7px 7px 5px #888888;

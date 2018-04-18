@@ -97,15 +97,18 @@ function init() {
     constructStackCards()
     hammer();
     tempNumber++;
+    //$("#node_detail").animate({ "opacity": 1 });
+
 }
 
 function constructStackCards() {
     var html =`<div id="card_2" class="card_2 blank_card"></div>
-        <div id="card_3" class="card_3 blank_card"></div>`
+        <div id="card_3" class="card_3 blank_card"></div>
+        <div id="card_4" class="card_4 blank_card"></div>`
 
     document.getElementById("node_detail_generation").innerHTML += html;
-    $("#card_2").animate({ "opacity": 1 });
-    $("#card_3").animate({ "opacity": 1 });
+    //$("#card_2").animate({ "opacity": 1 });
+    //$("#card_3").animate({ "opacity": 1 });
 
 }
 
@@ -198,7 +201,6 @@ function constructCard(nodeSection, nodeId) {
     document.getElementById("node_detail_generation").innerHTML = cardHTML;
     // Get the card
    
-    //$("#node_detail").animate({ "opacity": 1 });
 }
 
 function getLorem() {
@@ -304,20 +306,54 @@ function hammer() {
 
 function transition() {
     console.log("transition");
-    document.getElementById("card_2").id = "card_2_animated";
-    $("#card_2_animated").animate({
+
+    $("#card_2").toggleClass('card_2_animate');
+
+    $("#card_2").animate({
         "z-index": 8,
+        "opacity": 1,
         "position": "relative",
         "width": "85%",
         "border-radius": "25px",
-        "height": "80vh",
-        "margin": "7.25vh auto 2vh auto",
-        "background": "linear-gradient(to bottom right, #92FFFB, #FFE892)"},
+        "height": "76vh",
+        margin: "14.25vh auto 9vh auto"
+    },
         function() {
             console.log("async called")
             init();
-    });
+        });
+
+    $("#card_3").toggleClass('card_3_animate');
+
+    $("#card_3").animate({
+        "z-index": 7,
+        "opacity": 0.9,
+        "width": "75%",
+        "border-radius": "23px",
+        "height": "76vh",
+        "background-color": "#7D3988",
+        margin: "11.5vh auto"
+    },
+        function () {
+            console.log("async called")
+        });
+
+    $("#card_4").animate({
+        "z-index": 6,
+        "opacity": 0.5,
+        "width": "68%",
+        "border-radius": "21px",
+        "height": "76vh",
+        margin: "9.5vh auto"
+    },
+        function () {
+            console.log("async called")
+        });
+
+
+
 }
+
 
 
 
