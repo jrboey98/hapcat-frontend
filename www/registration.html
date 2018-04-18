@@ -83,29 +83,32 @@
         <div class="welcome_message_div">
             <h1 class="welcome_message">Welcome To Hapcat!</h1>
         </div>
-        <form class="registration_form">
+        <p id="username_alert" class="alert">Username unavailable</p>
+        <p id="password_length_alert" class="alert">Password must be at least 6 characters long</p>
+        <p id="password_match_alert" class="alert">Passwords do not match</p>
+        <form class="registration_form" name="registration_form">
             <div class="textinput_div">
-                <p class="textinput_hint">Username</p>
+                <p class="textinput_hint" name="username">Username</p>
                 <input type="text" name="Username" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Email</p>
+                <p class="textinput_hint" name="email">Email</p>
                 <input type="text" name="Email" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Password</p>
+                <p class="textinput_hint" name="password">Password</p>
                 <input type="password" name="Password" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Confirm Password</p>
+                <p class="textinput_hint" name="confirm_password">Confirm Password</p>
                 <input type="password" name="ConfirmPassword" class="textinput" />
             </div>
             <div class="textinput_div">
-                <p class="textinput_hint">Date Of Birth</p>
-                <input type="date" name="DOB" class="textinput" />
+                <p class="textinput_hint" name="DOB">Date Of Birth</p>
+                <input type="button" name="DOB" class="textinput" />
             </div>
             <div>
-                <button class="register_button">Sign Up!</button>
+                <input type="button" class="register_button" onclick="validate()" value="Sign Up!" />
             </div>
         </form>
     </div>

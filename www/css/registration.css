@@ -166,8 +166,8 @@ h1 {
     /* Welcome Field */
 
 .welcome_message_div {
-    margin-top: 32vw;
-    margin-bottom: 15vw;
+    margin-top: 15vh;
+    margin-bottom: 7vh;
     position: relative;
 }
 
@@ -233,4 +233,13 @@ textarea:focus, input:focus {
     color: #000;
     width: 100%;
     border-color: #510B5D;
+}
+
+.alert {
+    font-family: 'Lato', sans-serif;
+    font-size: 0.7em;
+    color: red;
+    display: none;
+    padding: 0;
+    margin: 0 0 0 16vw;
 }
