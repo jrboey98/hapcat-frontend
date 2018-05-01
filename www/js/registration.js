@@ -54,21 +54,26 @@ function onResume() {
 }
 
 function onLoad() {
-
+    showDatePicker();
 }
 
-var options = {
-    date: new Date(),
-    mode: 'date'
-};
+function showDatePicker() {
+    var options = {
+        date: new Date(),
+        mode: 'date'
+    };
 
-function onSuccess(date) {
-    alert('Selected date: ' + date);
+    function onSuccess(date) {
+        alert('Selected date: ' + date);
+    }
+
+    function onError(error) { // Android only 
+        alert('Error: ' + error);
+    }
+
+    datePicker.show(options, onSuccess, onError);
 }
 
-function onError(error) { // Android only 
-    alert('Error: ' + error);
-}
 
 function validate() {
     console.log("validate called")
@@ -106,4 +111,3 @@ function validate() {
     }
 }
 
-//datePicker.show(options, onSuccess, onError);

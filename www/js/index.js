@@ -215,7 +215,7 @@ function init() {
     //    data = parsed;
     //    generateCards();
     //});
-    $.getJSON('http://hapcat.tenaisenma.com:8080/api/v0/suggestions', function (response) {
+    $.getJSON('https://hapcat.tenaisenma.com/', function (response) {
         data = response;
         generateCards();
     });
