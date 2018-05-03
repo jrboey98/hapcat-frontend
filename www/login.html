@@ -61,7 +61,7 @@
 
     <!-- End basic common stuff! -->
     <!-- This page stuff -->
-
+    <script type="text/javascript" src="js/login.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css" />
 
     <style>
@@ -80,19 +80,21 @@
             <img src="img/logo.svg" align="middle" style="width:300px;height:300px;" />
         </div>
         <div class="login_div">
-
-            <div class="textinput_div">
-                <p class="textinput_hint">Username:</p>
-                <input type="text" placeholder=" Username" class="textinput"/>
-            </div>
-            <div class="textinput_div">
-                <p class="textinput_hint">Password:</p>
-                <input type="text" placeholder=" Password" class="textinput" />
-            </div>
-            <button class="content_button">Log In</button>
-            <div>
-                <button class="content_button">New? Register here!</button>
-            </div>
+            <form name="login_form">
+                <div class="textinput_div">
+                    <p class="textinput_hint">Username:</p>
+                    <input type="text" placeholder=" Username" class="textinput" />
+                </div>
+                <div class="textinput_div">
+                    <p class="textinput_hint">Password:</p>
+                    <input type="text" placeholder=" Password" class="textinput" />
+                </div>
+                <button class="content_button">Log In</button>
+                <div>
+                    <input type="button" class="content_button" onclick="validate()" value="Login" />
+                </div>
+            </form>
+            
             <div>
                 <div class="forgotpass">
                     <a href="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX9228474.jpg">Forgot password?</a>

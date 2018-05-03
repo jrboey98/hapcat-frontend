@@ -54,60 +54,22 @@ function onResume() {
 }
 
 function onLoad() {
-    showDatePicker();
-}
-
-function showDatePicker() {
-    var options = {
-        date: new Date(),
-        mode: 'date'
-    };
-
-    function onSuccess(date) {
-        alert('Selected date: ' + date);
-    }
-
-    function onError(error) { // Android only 
-        alert('Error: ' + error);
-    }
-
-    datePicker.show(options, onSuccess, onError);
 }
 
 
 function validate() {
     console.log("validate called")
-    var password = document.forms['registration_form'][2].value;
-    var confPassword = document.forms['registration_form'][3].value;
-    if (password.length < 6) {
-        document.getElementById("password_length_alert").style.display = "block";
-        return;
-    } else {
-        document.getElementById("password_length_alert").style.display = "none";
-    }
-    if (password != confPassword) {
-        document.getElementById("password_match_alert").style.display = "block"
-        return;
-    } else {
-        document.getElementById("password_match_alert").style.display = "none"
-    }
+    var password = document.forms['login_form'][2].value;
     var user = {
-        username: document.forms['registration_form'][0].value,
-        email: document.forms['registration_form'][1].value,
-        password: document.forms['registration_form'][2].value,
-        date_of_birth: document.forms['registration_form'][4].value
+        username: document.forms['login_form'][0].value,
+        password: document.forms['login_form'][1].value
     }
 
-    $.post("https://hapcat.tenaisenma.com/api/v0/registration/",
+    $.post("http://hapcat.tenaisenma.com:8080/api/v0/login/",
         user,
         function (data, status) {
             alert("Data: " + data + "\nStatus: " + status);
             console.log(data);
         });
-    if (/*PSEUDO: response returns username is already taken*/false) {
-        document.getElementById("username_alert").style.display = "block";
-    } else {
-        document.getElementById("username_alert").style.display = "none";
-    }
 }
 

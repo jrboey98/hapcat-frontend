@@ -71,7 +71,7 @@ var data;
 var tempNumber = 0;
 
 function getData() {
-    $.getJSON('http://hapcat.tenaisenma.com:8080/api/v0/suggestions', function (response) {
+    $.getJSON('https://hapcat.tenaisenma.com/api/v0/suggestions', function (response) {
         data = response;
         init();
     });
@@ -89,7 +89,7 @@ function init() {
     //    hammer();
     //});
     
-    if (tempNumber % 19 == 0) {
+    if (tempNumber % 13 == 0) {
         tempNumber = 0;
     }
     var node = data['order'][tempNumber];
@@ -227,8 +227,10 @@ function hammer() {
     function dragCard(ev) {
         var elem = ev.target;
         if (ev.gesture.velocityX >= 2 && ev.gesture.deltaX > 50) {
+            vote("right");
             swipeRight(ev);
         } else if (ev.gesture.velocityX <= -2 && ev.gesture.deltaX < 50) {
+            vote("left");
             swipeLeft(ev);
         }
 
@@ -352,6 +354,19 @@ function transition() {
 
 
 
+}
+
+function vote(direction) {
+    var voteResult = {
+        swipe: direction//,
+        //node: data[nodeSection][nodeId]
+    }
+    $.post("http://hapcat.tenaisenma.com:8080/api/v0/voting/",
+        voteResult,
+        function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+            console.log(data);
+        });
 }
 
 
